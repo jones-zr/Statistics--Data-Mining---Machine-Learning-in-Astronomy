@@ -1,0 +1,3 @@
+From [Manifold](https://en.wikipedia.org/wiki/Manifold):
+> In mathematics, a manifold is a topological space that locally resembles Euclidean space near each point. More precisely, an $n$-dimensional manifold, or $n$*-manifold* for short, is a topological space with the property that each point has a neighbourhood that is homeomorphic to an open subset of $n$-dimensional Euclidean space.
+> One-dimensional manifolds include lines and circles, but not self-crossing curves. Two-dimensional manifolds are also called surfaces. Examples include the plane, the sphere, and the torus, and also the Klein bottle and real projective plane.

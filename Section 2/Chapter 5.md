@@ -1,0 +1,117 @@
+*Bayesian Statistical Inference*
+### 5.1. Introduction to the Bayesian Method
+##### ***The Essence of the Bayesian Idea***
+- Thesis: probability statements are not limited to data; can be made for model parameters and models themselves; inferences made by producing pdfs; model parameters are treated as random variables
+- Both classical and Bayesian stats use data likelihood functions; Bayesian extends concept with extra information (a **prior**) and by assigning pdfs to all model parameters and models themselves
+- Bayesian model motivated by its ability to provide a full probabilistic framework for data analysis; it incorporates unknown or uninteresting model parameters (**nuisance parameters**) in data analysis
+- **Bayes' theorem**, obtained by applying Bayes' rule to a likelihood function $p(D|M)$, is: $$ p(M|D) = \frac{p(D|M) p(M)}{p(D)} $$
+	- Essentially, combining an initial belief with new data to arrive at an improved belief; "improved belief" ($p(M|D$) is proportional to the product of "initial belief" ($p(M)$) and the probability that that belief generated the observed data ($p(D|M)$)
+	- More explicitly, with the inclusion of prior information $I$ and model parameters $\boldsymbol{\theta}$: $$ p(M, \boldsymbol{\theta} | D, I) = \frac{p(D|M, \boldsymbol{\theta}, I) p(M, \boldsymbol{\theta} | I)}{p(D|I)} $$ where
+		- $p(M, \boldsymbol{\theta} | D, I)$ is the **posterior** pdf for model $M$ and parameters $\boldsymbol{\theta}$, given data $D$, and prior information $I$
+		- $p(D|M, \boldsymbol{\theta}, I)$ is the **likelihood** of the data given a model, fixed-value parameters describing it, and prior information
+		- $p(M, \boldsymbol{\theta} | I)$ is the priori joint probability for the model and its parameters in the absence of data to compute a likelihood; the **prior**; can be expanded as: $$ p(M, \boldsymbol{\theta} | I) = p(\boldsymbol{\theta} | M, I) p(M|I) $$ and the integral of the prior $p(\boldsymbol{\theta} | M, I)$ over all parameters should be unity
+		- $p(D|I)$ is the **probability of data**, or the prior predictive probability for $D$; provides the proper normalisation for the posterior pdf
+- Controversial point of Bayesian method: the posterior, $p(M, \boldsymbol{\theta} | D, I)$, is not a probability in the same sense as the likelihood $p(D|M, \boldsymbol{\theta}, I)$ is
+	- The posterior corresponds to the state of our knowledge/belief about a model and its parameters given data and prior information; is a posterior pdf for models and model parameters
+	- When more data are taken, the posterior based on the first data set can be used as the prior for the second analysis; updating belief with new data
+- Statistical 95% confidence regions = Bayesian **credible regions**
+##### ***Steps of a Bayesian Statistical Inference***
+1. Formulate the data likelihood $p(D|M, I)$
+2. Chose the prior $p(\boldsymbol{\theta} | M, I)$, which incorporates all other knowledge that might exist but is not used when computing the likelihood
+3. Determine the posterior pdf $p(M | D, I)$; often is properly normalised, so removes need to define $p(D|I)$
+4. Search for the best model parameters $M$ which maximise $p(M|D,I)$, yielding the **maximum a posteriori** (MAP) estimate (an analogue of the **point estimate** from classical statistics)
+	- Another natural Bayesian estimator, the **posterior mean**: $$ \overline{\theta} = \int \theta p(\theta|D) d\theta $$
+5. Quantification of uncertainty in parameter estimates using **credible regions**
+6. **Hypothesis testing** that incorporates the prior
+
+### 5.2. Bayesian Priors
+- The terms prior and posterior do not have absolute meanings
+##### ***Priors Assigned by Formal Rules***
+- **Informative priors:** priors that incorporate information from other measurements
+- **Uninformative priors:** priors with no other information other than the data to be analysed; incorporate weak but still objective information; even the most uninformative priors still affect the estimates
+- **Flat priors:** priors such that $p(\theta|I) \propto C$, where $C > 0$ is a constant
+	- Sometimes considered to be ill defined as a flat prior on a parameter doesn't imply a flat prior on a transformed version of the parameters
+- **Improper priors:** priors where the integral of their likelihoods does not equal unity; eg. $\int p(\theta|I) d\theta = \infty$ is not a pdf
+	- Generally not a problem as long as the resulting posterior is a well-defined pdf
+- **Principle of indifference:** a set of basic mutually exclusive possibilities need to be assigned equal probabilities, eg. each side of a d6 has a prior probability of 1/6
+- **Principle of consistency:** the prior for a location parameter should not change with translations of the coordinate system, and yields a flat prior; also should not depend on choice of measurement units; these are **scale-invariant priors**
+##### ***The Principle of Maximum Entropy***
+- **Entropy:** measures the information content of a pdf; symbol $S$
+	- Resembles thermodynamical entropy on purpose; units are $nat$ for natural unit
+- Given a pdf defined by $N$ discrete values $p_i$ with $\sum_{i=1}^{N} p_i = 1$, its entropy is: $$ S = -\sum_{i=1}^{N} p_i \ln(p_i) $$
+	- Continuous case given by: $$ S = -\int_{-\infty}^{\infty} p(x) \ln \left( \frac{p(x)}{m(x)} \right) dx $$ where the measure $m(x)$ are the values that would be assigned to $p_i$ in the case when no addition information is known; ensures entropy is invariant under a change of variables
+- The **Principle**: when assigning uninformative priors, maximising entropy over a suitable set of pdfs will give the distribution that is the least informative
+- In cases where only the mean and variance of the prior are known, and the distribution defined over the whole real line, the maximum entropy solution is a Gaussian with that mean and variance
+- The **Kullback-Leibler (KL) divergence** from $p(x)$ to $m(x$) is: $$ \text{KL} = \sum_{i} p_i \ln \left( \frac{p_i}{m_i} \right) $$
+	- Used the measure the information gain when moving from a prior distribution to a posterior distribution
+	- Sometimes called the KL distance between two pdfs
+##### ***Conjugate Priors***
+- The special name for a prior that has the same functional form as the posterior probability
+- Eg. when the likelihood function is a Gaussian $\mathcal{N}(\overline{x},s)$, the conjugate prior is also a Gaussian $\mathcal{N}(\mu_p, \sigma_p)$, and therefore the posterior function is also also a Gaussian $\mathcal{N}(\mu^0, \sigma^0)$ with: $$ \mu^0 = \frac{\mu_p / \sigma_p^2 + \overline{x} / s^2}{1 / \sigma_p^2 + 1 / s^2} \text{ and } \sigma^0 = (1 / \sigma_p^2 + 1 / s^2)^{-1/2} $$
+- Most frequently encountered conjugate pairs are the beta distribution for binomial likelihood, and the gamma distribution for Poissonian likelihood
+##### ***Empirical and Hierarchical Bayes Methods
+- Normal Bayes approach: parameters of priors are chosen before any data are observed
+- **Empirical Bayes** approach: parameters of priors (**hyperparameters**) are estimated from the data; set to their most likely values instead of integrated out; also known as the **maximum marginal likelihood**
+- **Hierarchical Bayes** or multilevel approach: prior distributions (**hyperpriors**) depend on unknown variables/hyperparameters that describe the population level probabilistic model
+
+### 5.3. Bayesian Parameter Uncertainty Quantification
+##### ***Posterior Intervals***
+- To obtain a Bayesian **credible region**, must find $a$ and $b$ such that: $$ \int_{-\infty}^{a} f(\theta) d\theta = \int_{b}^{\infty} f(\theta) d\theta = \alpha/2 $$
+- Probability that true value of $\theta$ is between $a$ and $b$ is $1 - \alpha$ (analogous to classical confidence intervals)
+- Interval ($a,b$) is the $\mathbf{1 - }\boldsymbol{\alpha}$ **posterior interval**
+- Often the posterior pdf $p(\theta)$ is not an analytical function; can only be evaluated numerically; can approximate the $1-\alpha$ posterior interval through the $\alpha /2$ and ($1 - \alpha / 2$) sample quantiles of simulations/sampling
+##### ***Marginalisation of Parameters***
+- **Marginalisation:** integrating the posterior pdf over only uninteresting (**nuisance**) parameters; resulting pdf is the **marginal posterior pdf**
+- If the value of the nuisance parameter is unknown, integrate over all plausible values to obtain the marginalised posterior pdf for the interesting parameter $x$
+- The marginalised pdfs span a wider range of $x$ than posterior pdfs for $x$ where the value of the nuisance parameter is known
+
+### 5.4. Bayesian Model Selection
+- **Odds ratio:** comparing the posterior probabilities of two models $M_1$ and $M_2$ to find out which is better supported by data; favours $M_2$ over $M_1$ with: $$ O_{21} \equiv \frac{p(M_2 | D,I)}{p(M_1 | D,I)} $$
+	- These two posteriors $M_{1,2}$ can be be obtained from the posterior pdf $p(M, \boldsymbol{\theta} | D, I)$ using **marginalisation** over the model parameter space $\boldsymbol{\theta}$
+	- Posterior probability the model $M$ given data $D$ is: $$ p(M | D,I) = \frac{p(D | M,I) p(M|I)}{p(D|I)} $$ where $$ E(M) \equiv p(D | M,I) = \int p(D | M, \boldsymbol{\theta}, I) p(\boldsymbol{\theta} | M,I) d\boldsymbol{\theta} $$ is the **marginal likelihood** or **evidence** for model $M$
+	- $E(M)$ is also called **global likelihood** for model $M$; is a **weighted average** of the likelihood function
+	- To compute $p(D|I)$: $$ O_{21} = \frac{E(M_2)}{E(M_1)} \frac{p(M_2 | I)}{p(M_1 | I)} = B_{21} \frac{p(M_2 | I)}{p(M_1 | I)} $$ where $B_{21}$ (the **Bayes factor**) is the ratio of global likelihoods and is: $$ B_{21} = \frac{\int p(D | M_2, \boldsymbol{\theta}_2, I) p(\boldsymbol{\theta}_2 | M_2, I) d\boldsymbol{\theta}_2}{\int p(D | M_1, \boldsymbol{\theta}_1, I) p(\boldsymbol{\theta}_1 | M_1, I) d\boldsymbol{\theta}_1} $$
+##### ***Bayesian Hypothesis Testing***
+- Special case of model comparison where $M_2 = \overline{M_1}$, the complementary hypothesis to $M_1$
+- $M_1$ is taken to be the null hypothesis; if data supports $M_2$ over $M_1$, then the null hypothesis is rejected
+- With equal priors $p(M_1|I) = p(M_2|I)$, the odds ratio is: $$ O_{21} = B_{21} = \frac{p(D|M_2)}{p(D|M_1)} $$
+	- It's not possible to compute $p(D|M_2)$ given $M_2$ is just the complementary hypothesis to $M_1$
+- Bayesian hypothesis testing is unable to reject a hypothesis if there is no alternative explanation for observed data, as it's based on the posterior rather than the data likelihood
+	- Classical version is based on data likelihood, and the null hypothesis can be rejected if it doesn't provide a good description of the data
+##### ***Occam's Razor***
+- The principle of selecting the simplest model that is in fair agreement with the data
+- Odds ration has the ability to penalise complex models with many free parameters; Occam's Razor is naturally included in Bayesian model comparison
+##### ***Information Criteria***
+- **Bayesian information criterion (BIC)** is closely related to the odds ratio and similar to the AIC
+- The BIC for model $M$ is: $$ BIC \equiv -2 \ln [L^0 (M)] + k \ln N $$ where $k$ is the number of model parameters, $N$ is the amount of data points, and $L^0 (M)$ is the maximum value of the data likelihood
+	- The BIC of a model corresponds to $-2 \ln [E(M)]$
+- When two models are compared via their BIC, the model with the smallest value wins; if they are equal, the model with the fewer free parameters wins
+- The BIC penalises additional model parameters more harshly than the AIC; in general it is better to compute the odds ratio when computationally feasible
+
+### 5.5. Nonuniform Priors: Eddington, Malmquist, and Lutz-Kelker Biases
+- **Selection bias** or **Malmquist bias:** the difference between true distribution $h(x)$ and estimate $f(x)$ caused by sample truncation
+- Similarly named **Eddington-Malmquist bias:** bias in brightness/magnitude measurements due to combined effect of measurement errors and nonuniform $h(x)$
+	- Mathematically identical to **Lutz-Kelker bias**
+- Main difference: Eddington-Malmquist bias and Lutz-Kelker bias disappear when measurement error for $x$ vanishes, **Malmquist bias** does not
+- True and observed distributions are related via convolution: $$ f(x) = h(x) \star e(x) = \int_{-\infty}^{\infty} h(x') e(x - x') dx' $$ where $e(x)$ is a known error distribution
+	- If $e(x) = \delta (x)$ then $f(x) = h(x)$; if $h(x) = \text{constant}$ then $f(x) = \text{constant}$
+- For homoscedastic and Gaussian errors, $\Delta x = x_{obs} - x_{true}$ (broadly); can be expressed in terms of measured $f(x)$: $$ \Delta x = -\sigma^2 \frac{1}{f(x)} \frac{df(x)}{dx} $$ when evaluated at $x = x_{obs}$
+	- $\Delta x$ vanishes for $\sigma = 0$; Eddington-Malmquist and Lutz-Kelker biases become negligible for vanishing errors
+
+### 5.6. Simple Examples of Bayesian Analysis: Parameter Estimation
+- Starts 196/558; 185
+
+### 5.7. Simple Examples of Bayesian Analysis: Model Selection
+
+### 5.8. Numerical Methods for Complex Problems (MCMC)
+- Starts 228/558
+
+### 5.9. Hierarchical Bayesian Modelling
+
+### 5.10. Approximate Bayesian Computation
+
+### 5.11. Summary of Pros and Cons for Classical and Bayesian Methods
+
+
+Next chapter: [[Chapter 6]]
+New terminology:

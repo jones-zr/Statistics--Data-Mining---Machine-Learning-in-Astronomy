@@ -99,12 +99,47 @@
 	- $\Delta x$ vanishes for $\sigma = 0$; Eddington-Malmquist and Lutz-Kelker biases become negligible for vanishing errors
 
 ### 5.6. Simple Examples of Bayesian Analysis: Parameter Estimation
-- Starts 196/558; 185
+##### ***Parameter Estimation for a Gaussian Distribution***
+- Estimating $\mu$:
+	- For a set of $N$ measurements $\{x_i\}$ with heteroscedastic errors $\sigma_i$, the posterior pdf for $\mu$ is Gaussian in cases **when $\sigma_i$ are known**, regardless of data set size $N$; this is not true when $\sigma$ is unknown and determined from data
+	- **When $\sigma$ is not known a priori**, the assumption of the Gaussian uncertainty of $\mu$ is valid only in the **large N limit**; when $N$ is not large, the posterior pdf for $\mu$ follows Student's $t$ distribution
+	- Irrespective of the size of a data set, only $N$, $\overline{x}$, and $V$ are needed to fully capture the entire information content of the **$\mu$ posterior pdf**: $$ L_p \equiv \ln [p(\mu | \{x_i\}, I)] = \text{constant} - (N + 1) \ln \sigma - \frac{N}{2 \sigma^2} ((\overline{x} - \mu)^2 + V) $$where $V = (N - 1) s^2 / N$; $s$ is the sample standard deviation
+- Estimating $\sigma$:
+	- Analogous to determining $p(\mu | \{x_i\}, I)$, the posterior pdf of $\sigma$ is derived using marginalisation as: $$ p(\sigma | \{x_i\}, I) \propto \frac{1}{\sigma^N} \exp \left( \frac{-NV}{2\sigma^2} \right) $$
+- For a Gaussian distribution with Gaussian errors:
+	- If errors are homoscedastic, the resulting distribution of measurements is Gaussian
+	- If errors are heteroscedastic, "" is not itself a Gaussian
+##### ***Parameter Estimation for the Binomial Distribution***
+- Estimating $b$:
+	- **When $N$ is large**,  and it's (assumed Gaussian) uncertainty are determined as in [[Chapter 3#3.3. Common Univariate Distribution Functions#***The Binomial Distribution***|Binomial Distribution]]
+	- **For small $N$**, the posterior pdf for $b$ is: $$ p(b | \{x_i\}) = C b^k (1 - b)^{N - k} $$ where $k$ is the actual observed number of successes in data set of $N$ values; $C$ is a normalisation constant
+		- Maximum posterior occurs at $b_0 = k/N$
+		- Standard error for $b_0$ is: $$ \sigma_b = \left[ \frac{b_0 (1 - b_0)}{N} \right]^{1/2} $$
+##### ***Parameter Estimation from the Cauchy (Lorentzian) Distribution***
+- The mean value for many independent samples will themselves follow the same Cauchy distribution, and will not benefit from the central limit theorem
+- Estimating $\mu$ and $\gamma$:
+	- Logarithm of the posterior pdf is: $$ L_p \equiv \ln [p(\mu, \gamma | \{x_i\}, I)] = \text{constant} + (N + 1) \ln \gamma - \sum_{i=1}^{N} \ln [\gamma^2 + (x_i - \mu)^2] $$
+	- As sample size $N$ increases, both posterior marginal distributions become **asymptotically Gaussian**
+	- The median and $\sigma_G$ can be used as a good shortcut to determine the best-fit parameters
+##### ***Beating $\sqrt{N}$ for Uniform Distribution***
+- 
+##### ***Parameter Estimation for a Gaussian and a Uniform Background***
+##### ***Regression Preview: Gaussian vs. Poissonian Likelihood***
+##### ***A Mixture Model: How to Throw Out Bad Data Points***
 
 ### 5.7. Simple Examples of Bayesian Analysis: Model Selection
+##### ***Gaussian or Lorentzian Likelihood?***
+##### ***Understanding Knuth's Histograms***
+##### ***One Gaussian or Two Gaussians?***
 
 ### 5.8. Numerical Methods for Complex Problems (MCMC)
 - Starts 228/558
+##### ***Markov Chain Monte Carlo***
+##### ***MCMC Algorithms***
+##### ***PyMC3: MCMC in Python***
+##### ***Example: Model Selection with MCMC***
+##### ***Example: Gaussian Distribution with Unknown Gaussian Errors***
+##### ***Example: Unknown Signal with an Unknown Background***
 
 ### 5.9. Hierarchical Bayesian Modelling
 

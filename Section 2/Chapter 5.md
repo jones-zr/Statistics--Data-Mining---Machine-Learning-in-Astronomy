@@ -122,13 +122,25 @@
 	- As sample size $N$ increases, both posterior marginal distributions become **asymptotically Gaussian**
 	- The median and $\sigma_G$ can be used as a good shortcut to determine the best-fit parameters
 ##### ***Beating $\sqrt{N}$ for Uniform Distribution***
-- 
+- With no tails, extreme values of $x_i$ are a better way to estimate location parameter than the mean value; errors improve with sample size $1/N$ rather than $1/\sqrt{N}$
+- Estimating $\mu$ and $W$:
+- Within $[W_{min}, W_{max}]$, the posterior pdf  $p(\mu, W | {x_i}, I)$ is proportional to $1/W^{N+1}$ without a dependance on $\mu$, and is 0 otherwise
 ##### ***Parameter Estimation for a Gaussian and a Uniform Background***
+- For a mixed Gaussian and uniform distribution in some interval $W$, for known location parameter $\mu$: $$ L_p \equiv \ln[p(A, \sigma | {x_i}, \mu, W)] = \sum_{i=1}^{n} \ln \left[ A \frac{\exp \left( \frac{-(x_i - \mu)^2}{2\sigma^2} \right)}{\sqrt{2 \pi} \sigma} + \frac{1-A}{W} \right] $$
+- Model example: a spectral line of known central wavelength $\mu$ but unknown width $\sigma$ and strength/amplitude $A$
+	- Expect a covariance between $\sigma$ and $A$; an error for $\sigma$ is compensated for by a proportional error in $A$; if additional information were available about either parameter, the other would be better constrained
 ##### ***Regression Preview: Gaussian vs. Poissonian Likelihood***
+- For data that are pairs of random variables, eg. $(x_1, y_1), ..., (x_M, y_M)$, we want to estimate $a$ and $b$ for a model $y=ax+b$ (**regression**)
+- Data set ${x_i}$ drawn from $p(x) = ax + b$; since $p(x)$ must be normalised, $a$ and $b$ are related via: $$ b = \frac{1}{W} = ax_{1/2} $$ therefore for $a>0$: $$ L_p (a | {x_i}, x_{min}, x_{max}) = \sum_{i=1}^{N} \ln \left[ a (x_i - x_{1/2}) + \frac{1}{W} \right] $$
+- For $y_i$, the expectation value and standard deviation are the same for a Poisson and Gaussian distribution; only the distribution shape changes
 ##### ***A Mixture Model: How to Throw Out Bad Data Points***
+- Standard methods for estimating parameters are based on the assumption of Gaussianity
+	- When the underlying distribution is known, maximise the posterior pdf
+	- When model is not known a priori, use Bayesian framework to construct a model in terms of unknown nuisance model parameters, then marginalise over them to estimate quantities
 
 ### 5.7. Simple Examples of Bayesian Analysis: Model Selection
 ##### ***Gaussian or Lorentzian Likelihood?***
+- 
 ##### ***Understanding Knuth's Histograms***
 ##### ***One Gaussian or Two Gaussians?***
 

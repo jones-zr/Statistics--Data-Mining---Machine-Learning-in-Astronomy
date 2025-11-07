@@ -140,9 +140,22 @@
 
 ### 5.7. Simple Examples of Bayesian Analysis: Model Selection
 ##### ***Gaussian or Lorentzian Likelihood?***
-- 
+- Obtain model evidence by integrating the product of the data likelihood and the prior pdf for the model parameters, eg. $$ E(M = \text{Cauchy}) = \int p(\{x_i\} | \mu, \gamma, I) p(\mu, \gamma | I) d\mu d\gamma $$ and $$ E(M = \text{Gaussian}) = \int p(\{x_i\} | \mu, \sigma, I) p(\mu, \sigma | I) d\mu d\sigma $$
+- If no other information is available, can assume the ratio of model priors $p(M_C |I) / p(M_G |I) = 1$, and thus the odds ratio is the same as the Bayes factor, $$ O_{CG} = \frac{E(M = \text{Cauchy})}{E(M = \text{Gaussian})} $$
+- If the odds ratio is very close to 1, the comparison is inconclusive; the ability to discriminate between models in creases with number of data values
+- Additionally, the presence of even a single outlier can have a large effect on the computed likelihood and conclusions
 ##### ***Understanding Knuth's Histograms***
+- The best piecewise constant model has the number of bins $M$ which maximises: $$ F(M | \{x_i\}, I) = N \log M + \log \left[ \Gamma \left(\frac{M}{2}\right) \right] - M \log \left[ \Gamma \left(\frac{1}{2}\right) \right] - \log \left[ \Gamma \left(N + \frac{M}{2}\right) \right] + \sum_{k=1}^{M} \log \left[ \Gamma \left(n_k + \frac{1}{2}\right) \right] $$ where $n_k$ is the number of measurements $x_i$ which are found in bin $k$
+- By assumption, bin width is constant and number of bins is the result of model selection
+- The expectation value of the posterior pdf of $h_k$ is: $$ h_k = \frac{n_k + \frac{1}{2}}{N + \frac{M}{2}} $$ as the assumed prior distribution effectively places one half of a datum in each bin
+- Optimal bin width varies depending on underlying distribution; for a Gaussian ($N$ up to $10^6$) shows: $$ \Delta_b = \frac{2.7 \sigma_G}{N^{1/4}} $$
+	- With $\sigma_G$, this is applicable to non-Gaussian distributions if they don't have complex structure (ie. multiple nodes, extended tails)
+- For non-Gaussian distributions, Scott's rule greatly underestimates the optimal number of histogram bins
+- **Bayesian blocks**: the data are segmented into blocks, with the borders between two blocks being set by changepoints; the **log-likeliness fitness function** can be defined for each block: $$ F(N_i, T_i) = N_i (\log N_i - \log T_i) $$ where $N_i$ is the number of points in block $i$, and $T_i$ is the width of block $i$
+	- These adaptive bin widths lead to a better representation of the underlying data
+	- Statistical significance can be attached to the bin configuration
 ##### ***One Gaussian or Two Gaussians?***
+- ...
 
 ### 5.8. Numerical Methods for Complex Problems (MCMC)
 - Starts 228/558
@@ -161,4 +174,4 @@
 
 
 Next chapter: [[Chapter 6]]
-New terminology:
+New terminology: [[Astropy Functions]]

@@ -189,11 +189,24 @@
 - ...
 
 ### 5.9. Hierarchical Bayesian Modelling
-- 
+- Also called **multilevel models**, **Bayesian belief networks**, or **graphical models**
+- Prior distributions depend on unknown variables (**hyperparameters**)that describe the group/population level probabilistic model
+- For a vector of parameters $\boldsymbol{\theta}$ has two elements $\alpha, \beta$, with likelihood function $p(D|\alpha, \beta)$ and prior probability $p(\alpha, \beta)$:
+	- If their product can be factored as a **chain of dependencies** among model parameters, $$ p(D|\alpha, \beta) p(\alpha, \beta) = p(D|\alpha) p(\alpha, \beta) p(\beta) $$then the **model is hierarchical**
+- Approach is useful for quantifying uncertainty in the prior pdf, and for using overall population properties when estimating parameters of a single population member; can effectively handle multiple sources of uncertainty at all stages of data analysis
+- **Hyperpriors**: priors shared among all sample elements, eg. systematic velocity and velocity dispersion shared among all stars of the same cluster
+- In Astronomy, HB modelling often applied to a **set of sets of measurements that have things in common**, eg. measurements of individual supernova luminosities all drawn from a population of type Ia supernovas; SEDs of stars that are all behind the same dust layer with unknown extinction properties
 
 ### 5.10. Approximate Bayesian Computation
+- Astronomical models are often intrinsically stochastic; can be difficult to explicitly write the data likelihood out; **ABC** makes tuning method less as hoc and more efficient
+- ABC idea: produce a large number of models (simulations) by sampling the plausible (prior) values of input parameters and select those that resemble the data; distribution of input parameters for subset then approximates the true posterior pdf
+- ABC method typically relies on a **low-dimensionality** summary statistic, eg. sample mean $S(x)$; when $S(x)$ is a sufficient statistic, ABC converges to the true posterior
+- In every iteration $j$, the set of parameter values is improved through incremental approximations to the true posterior pdf; each subsequent value $\theta_i$ has an **importance weight**: $$ w_i = \propto \frac{p_o(\theta)}{p_j(\theta)} $$
+	- Weights are larger in tails of parameter distribution; help avoid their undersampling and overestimating the constraining power
+	- Known as **Population Monte Carlo ABC**
 
 ### 5.11. Summary of Pros and Cons for Classical and Bayesian Methods
+- 245
 
 
 Next chapter: [[Chapter 6]]

@@ -206,7 +206,29 @@
 	- Known as **Population Monte Carlo ABC**
 
 ### 5.11. Summary of Pros and Cons for Classical and Bayesian Methods
-- 245
+- **Technical differences**:
+	- *Point estimates*: MLE ~ Bayes estimator ~ **minimax** estimator (estimator minimises the maximum risk); both methods return approximately the same, robust results
+	- *Uncertainty estimates*: Both MLE and Bayes estimators work under generic circumstances, are easy to implement, and are computationally expensive
+	- *Hypothesis testing*: Both rely heavily on confidence in the **prior**
+	- *Goodness-of-fit testing*: Distinction is muddled by overlapping boundaries
+	- *Nuisance parameters*: Bayesian approach with MCMC is more general and straightforward than frequentist approach with likelihood ratio tests; however Bayesian approach relies on the quality of the MCMC sampling, which can be uncertain in complex models
+- **Subjective differences**:
+	- *Symmetry and grand unification*: Bayesian approach makes probability statements about parameters; takes likelihood function to logical conclusion, removes distinction between data and parameters
+	- *Extra information*: Bayesian method allows for natural inclusion of prior information; very useful for small-sample situations where data is insufficient for frequentist methods; also useful when modelling the measurement error of each data point
+	- *Honesty/disclosure*: Bayesian approach forces prior beliefs to be made explicit
+		- "**There is no such thing as an objective statistical inference procedure**"
+	- *Elegance*: Generating samples from the posterior provides the key results of the Bayesian method
+- **Arguments against Bayesian approach**:
+	- *Is is really scientific?*: Posterior interval is not a true confidence interval
+		- "**We cannot make statements about the true parameter with these intervals, only about our beliefs**"
+	- *Effect of the prior*: Bayesian estimates are always biased by the prior, even when no prior information (or least informative prior) is used
+	- *Unnecessarily complicated and computationally intensive*: Often requires computationally unreliable integrals or approximations, even for simple models
+	- *Unnecessarily brittle and limiting*: Crucially dependent on the likelihood function; this function is often brittle when the assumptions are wrong or there are outliers in the data; likelihood often not appropriate in nonparametric settings
+- **Conclusions**:
+	- It's rare for analysis to be done in a fully Bayesian manner; most users use a mix of Bayesian and frequentist tools
+		- Most frequentists are also influences by Bayesian thinking with "priors" and "posteriors"
+	- The reliability and efficiency of the underlying Bayesian computations are a major practical issue
+	- *Advice*: know both paradigms well; make informed judgements about which tools to apply in which situations
 
 
 Next chapter: [[Chapter 6]]

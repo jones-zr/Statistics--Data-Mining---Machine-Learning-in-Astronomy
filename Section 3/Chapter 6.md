@@ -1,6 +1,6 @@
 *Searching for Structure in Point Data*
 ### 6.1. Nonparametric Density Estimation
-
+- 254
 ### 6.2. Nearest-Neighbour Density Estimation
 
 ### 6.3. Parametric Density Estimation

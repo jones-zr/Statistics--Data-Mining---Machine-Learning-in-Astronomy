@@ -165,15 +165,31 @@
 - **Markov chain**: a sequence of random variables where a given value nontrivially depends only on its preceding value; "memoryless" chain
 - **Markov process**: process of generating a Markov chain as: $$ p(\theta_{i+1} | \{\theta_i\}) = p(\theta_{i+1} | \theta_i) $$
 - To reach an equilibrium or stationary distribution of positions, it is sufficient that the transition probability is **symmetric**: $$ p(\theta_{i+1} | \theta_i) = p(\theta_i | \theta_{i+1}) $$
-	- The **detail balance** or **reversibility condition**; the probability of a jump between two points does not depend on the direction of the jump
+	- The **detailed balance** or **reversibility condition**; the probability of a jump between two points does not depend on the direction of the jump
 ##### ***MCMC Algorithms***
-- 
+- To reach a stationary distribution: $$ p(\theta_{i+1}) = \int T(\theta_{i+1} | \theta_i) p(\theta_i) d \theta_i $$where **transition probability** $T(\theta_{i+1} | \theta_i)$ is the **jump kernel** or **transition kernel**, and satisfies the detailed balance condition
+- **The Metropolis-Hastings algorithm**:
+	- Adopts the kernel: $$ T(\theta_{i+1} | \theta_i) = p_{acc}(\theta_i, \theta_{i+1}) K(\theta_{i+1} | \theta_i) $$where $K(\theta_{i+1} | \theta_i)$ is an arbitrary function and $p_{acc}(\theta_i, \theta_{i+1})$ is the **acceptance probability**
+		- A Gaussian centred on $\theta_i$ is often used for $K(\theta_{i+1} | \theta_i)$; when $p_{acc}(\theta_i, \theta_{i+1})$ exceeds 1, the proposed point $\theta_{i+1}$ is always accepted
+	- **Burn-in**: the early steps needed to reach a stationary distribution from an initial arbitrary position $\theta_0$; these steps are discarded in analysis
+	- Simple Metropolis-Hastings algorithm can become stuck in a **local mode** and not find the globally best mode within a reasonable run time
 ##### ***PyMC3: MCMC in Python***
+- PyMC3 package uses Metropolis-Hastings algorithm
+- Also: **emcee** package, developed by astronomers
 ##### ***Example: Model Selection with MCMC***
+- Bayesian model selection:
+	- If posterior distribution is approximately Gaussian, use **AIC** and **BIC**
+	- If posterior is non-Gaussian, use **odds ratio**
+	- For high-dimensionality posteriors, use **MCMC sampling odds ratio**
+- MCMC sampling odds ratio:
+	- For each point $\boldsymbol{\theta}$ in parameter space, the estimated integrated posterior is: $$ L(M) = \frac{N p(\boldsymbol{\theta})}{\rho(\boldsymbol{\theta})} $$where $p(\boldsymbol{\theta}_i)$ is the posterior evaluation at each point, and $\rho(\boldsymbol{\theta}_i)$ is the local density
 ##### ***Example: Gaussian Distribution with Unknown Gaussian Errors***
+- ...
 ##### ***Example: Unknown Signal with an Unknown Background***
+- ...
 
 ### 5.9. Hierarchical Bayesian Modelling
+- 
 
 ### 5.10. Approximate Bayesian Computation
 
@@ -181,4 +197,4 @@
 
 
 Next chapter: [[Chapter 6]]
-New terminology: [[Astropy Functions]]
+New terminology: [[Astropy Functions]], [[PyMC3 Functions]]

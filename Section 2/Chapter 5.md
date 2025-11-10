@@ -151,16 +151,23 @@
 - Optimal bin width varies depending on underlying distribution; for a Gaussian ($N$ up to $10^6$) shows: $$ \Delta_b = \frac{2.7 \sigma_G}{N^{1/4}} $$
 	- With $\sigma_G$, this is applicable to non-Gaussian distributions if they don't have complex structure (ie. multiple nodes, extended tails)
 - For non-Gaussian distributions, Scott's rule greatly underestimates the optimal number of histogram bins
-- **Bayesian blocks**: the data are segmented into blocks, with the borders between two blocks being set by changepoints; the **log-likeliness fitness function** can be defined for each block: $$ F(N_i, T_i) = N_i (\log N_i - \log T_i) $$ where $N_i$ is the number of points in block $i$, and $T_i$ is the width of block $i$
+- **Bayesian blocks**: the data are segmented into blocks, with the borders between two blocks being set by **changepoints**; the **log-likeliness fitness function** can be defined for each block: $$ F(N_i, T_i) = N_i (\log N_i - \log T_i) $$ where $N_i$ is the number of points in block $i$, and $T_i$ is the width of block $i$
 	- These adaptive bin widths lead to a better representation of the underlying data
 	- Statistical significance can be attached to the bin configuration
 ##### ***One Gaussian or Two Gaussians?***
 - ...
 
 ### 5.8. Numerical Methods for Complex Problems (MCMC)
-- Starts 228/558
+- Generic Monte Carlo methods are very inefficient, especially with high-dimensional integrals
+- **Markov Chain Monte Carlo** methods return a sample of points, or chain, from the $k$-dimensional parameter space with a distribution that is asymptotically proportional to $p(\theta)$
+	- With a Markov chain, quantitative description of the posterior pdf becomes and density estimation problem
 ##### ***Markov Chain Monte Carlo***
+- **Markov chain**: a sequence of random variables where a given value nontrivially depends only on its preceding value; "memoryless" chain
+- **Markov process**: process of generating a Markov chain as: $$ p(\theta_{i+1} | \{\theta_i\}) = p(\theta_{i+1} | \theta_i) $$
+- To reach an equilibrium or stationary distribution of positions, it is sufficient that the transition probability is **symmetric**: $$ p(\theta_{i+1} | \theta_i) = p(\theta_i | \theta_{i+1}) $$
+	- The **detail balance** or **reversibility condition**; the probability of a jump between two points does not depend on the direction of the jump
 ##### ***MCMC Algorithms***
+- 
 ##### ***PyMC3: MCMC in Python***
 ##### ***Example: Model Selection with MCMC***
 ##### ***Example: Gaussian Distribution with Unknown Gaussian Errors***

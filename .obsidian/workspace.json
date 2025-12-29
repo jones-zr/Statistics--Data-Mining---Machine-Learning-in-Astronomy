@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Section 2/Chapter 3.md",
+                "file": "Coding modules/AstroML Functions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 3"
+              "title": "AstroML Functions"
             }
           }
         ],
@@ -200,9 +200,10 @@
   },
   "active": "832e77e47484f3d5",
   "lastOpenFiles": [
+    "Coding modules/AstroML Functions.md",
     "Section 2/Chapter 3.md",
-    "Coding modules/Scikit-learn Functions.md",
     "Section 3/Chapter 6.md",
+    "Coding modules/Scikit-learn Functions.md",
     "Coding modules/SciPy Functions.md",
     "Coding modules/NumPy Functions.md",
     "Section 1/Chapter 2.md",
@@ -214,7 +215,6 @@
     "Coding modules/Astropy Functions.md",
     "Untitled 1.canvas",
     "Untitled.canvas",
-    "Coding modules/AstroML Functions.md",
     "Coding modules",
     "Terminology/Manifolds.md",
     "Terminology/Parametric or Nonparametric.md",

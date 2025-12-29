@@ -33,7 +33,10 @@
 ##### ***Extensions and Related Methods***
 
 ### 6.2. Nearest-Neighbour Density Estimation
-- 262
+- The implied point density at arbitrary $x$ is: $$ \hat f_K (x) = \frac{N}{V_D (d_K)} $$ where volume $V_D$ is evaluated according to dimensionality $D$
+	- Assume that the underlying density filed is locally constant
+	- *Error* in $\hat f_K (x)$ is $\sigma_f = K^{1/2} / V_D (d_K)$; *fractional error* is $\sigma_f / \hat f = 1/K^{1/2}$; therefore fractional accuracy increases with $K$ at the expense of spatial resolution
+- For small samples, KDE and nearest-neighbour methods are noisier than Bayesian blocks method; for larger samples, all three are similar
 
 ### 6.3. Parametric Density Estimation
 - 264

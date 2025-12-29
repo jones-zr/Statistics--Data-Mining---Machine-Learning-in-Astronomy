@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "Chapter 5"
             }
+          },
+          {
+            "id": "c3bd238edca03f00",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Section 3/Chapter 6.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter 6"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -98,7 +113,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "Section 2/Chapter 3.md",
+            "file": "Section 3/Chapter 6.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -152,12 +167,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0a37a3f067fa8d32",
+  "active": "c3bd238edca03f00",
   "lastOpenFiles": [
+    "Section 2/Chapter 5.md",
     "Section 1/Chapter 2.md",
     "Section 2/Chapter 3.md",
     "Section 2/Chapter 4.md",
-    "Section 2/Chapter 5.md",
     "Terminology/Parametric or Nonparametric.md",
     "Terminology/Manifolds.md",
     "NumPy Functions.md",

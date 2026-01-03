@@ -15,13 +15,13 @@
 	- Example of a kernel with a **top-hat distribution** centred on each point
 - A rectangular kernel can lead to non-smooth distribution and suspicious spikes, so other kernels (eg. Gaussian) are often used instead
 - **Narrow** kernels lead to noisy distributions, **wide** kernels lead to excessive smoothing and loss of information; a **well-tuned** kernel leads to accurate estimation of underlying distribution
-- For set of measurements $\{x_i\}$, the **kernel density estimator** (estimator of underlying pdf) at an arbitrary $x$ is: $$ \hat f_N (x) = \frac{1}{Nh^D} \sum_{i=1}^{N} K \left( \frac{d(x, x_i)}{h} \right) $$ where $K(u)$ is the *kernel function*, $h$ is the *bandwidth* (defines the size of the kernel)
+- For set of measurements $\{x_i\}$, the **kernel density estimator** (estimator of underlying pdf) at an arbitrary $x$ is: $$ \hat f_N (x) = \frac{1}{Nh^D} \sum_{i=1}^{N} K \left( \frac{d(x, x_i)}{h} \right) $$where $K(u)$ is the *kernel function*, $h$ is the *bandwidth* (defines the size of the kernel)
 - The local density is estimated as the *weighted mean* of all points, where the weights defined by $K(u)$ and typically decrease with distance $d(x, x_i)$
 - **Kernel function** $K(u)$: a smooth function, positive at all points, normalises to unity, has a mean of 0 and variance greater than 0
 	- Popular kernels include the Gaussian kernel, the top-hat (box) kernel, and the exponential kernel
 - Both histograms and kernels have a parameter: kernel/bin width
 - Optimal KDE bandwidth decreases as $\mathcal{O}(N^{-1/5})$ in 1D problems, and the error using the optimal bandwidth converges as $\mathcal{O} (N^{-4/5})$; histograms converge as $\mathcal{O}(N^{-2/3})$, therefore KDE is theoretically superior to the histogram as an estimator of the density
-- **Epanechnikov kernel:** the optimal kernel function in turns of minimum variance is $$ K(x) = \frac{3}{4} (1-x^2) $$ for $|x| \leq 1$, and $0$ otherwise
+- **Epanechnikov kernel:** the optimal kernel function in turns of minimum variance is $$ K(x) = \frac{3}{4} (1-x^2) $$for $|x| \leq 1$, and $0$ otherwise
 - To obtain the height of the density estimate at a singe point $x$, must sum over $N$ kernel functions
 ##### ***KDE with Measurement Errors***
 - To get underlying density $h(x)$, obtain an estimate $f(x)$ from noisy data, then *deconvolve* the noise pdf
@@ -31,21 +31,37 @@
 	- The Fourier transform of the true distribution $h(x)$ is given by $H(k) = F(k)/G(k)$; the underlying noise-free pdf $h(x)$ can be computed by inverse Fourier transform
 - For some kernels and noise distributions, deconvolution can be done analytically and the result becomes another modified kernel called the *deconvolved kernel*
 ##### ***Extensions and Related Methods***
+- ...
 
 ### 6.2. Nearest-Neighbour Density Estimation
-- The implied point density at arbitrary $x$ is: $$ \hat f_K (x) = \frac{N}{V_D (d_K)} $$ where volume $V_D$ is evaluated according to dimensionality $D$
+- The implied point density at arbitrary $x$ is: $$ \hat f_K (x) = \frac{N}{V_D (d_K)} $$where volume $V_D$ is evaluated according to dimensionality $D$
 	- Assume that the underlying density filed is locally constant
 	- *Error* in $\hat f_K (x)$ is $\sigma_f = K^{1/2} / V_D (d_K)$; *fractional error* is $\sigma_f / \hat f = 1/K^{1/2}$; therefore fractional accuracy increases with $K$ at the expense of spatial resolution
 - For small samples, KDE and nearest-neighbour methods are noisier than Bayesian blocks method; for larger samples, all three are similar
 
 ### 6.3. Parametric Density Estimation
-- 264
+- Nonparametric KDE estimates density by affixing a kernel to each data point
+- **Mixture model:** specifies underlying density model for data, uses fewer kernels, fits for kernel locations as well as widths
 ##### ***Gaussian Mixture Model***
-
+- A **GMM** models the underlying density/pdf of points as a sum of Gaussians; the 1D density of a set of points is: $$ \rho(\mathbf{x}) = N p(\mathbf{x}) = N \sum_{j=1}^{M} \alpha_j \mathcal{N} (\mu_j, \Sigma_j)) $$where there are $M$ Gaussians in the model with locations $\mu_j$ and covariance $\Sigma_j$, and the weight of each Gaussian $\alpha_j$
+- The likelihood can be found and optimised; more difficult at higher dimensions but the *expectation maximisation methods* from previously can be applied
+- *Common misunderstanding of GMM*: the fact that the information criteria (eg. BIC/AIC) prefer an $N$-component peak doesn't necessarily mean there are $N$ components; if clusters are not near Gaussian or background is strong then number of Gaussian components in mixture may not correspond to number of clusters in data
+	- Mixture models are often **more appropriate as a density estimator** instead of cluster identification
+	- BIC is good to find how many statistically significant clusters are supported by the data; any number of mixture components can be used when density estimation is the only goal of analysis
+- With sufficiently large number of components, mixture models approach the flexibility of nonparametric density estimation methods
+- **Determining number of components** $M$:
+	- Most MMs require $M$ as input to method; determining $M$ is same as any other *model selection problem* performed by *cross-validation* or using *BIC/AIC* (see [[Chapter 5#5.4. Bayesian Model Selection#***Information Criteria***|5.4.3]])
+	- In reality, it is rare to find distinct, isolated and Gaussian clusters of data in astronomical distributions; almost all distributions are *continuous*; *sample size* also influences finding $M$
 ##### ***Cloning Data in D > 1 Dimensions***
-
+- Cloning an arbitrary higher-dimension distribution requires as estimate of the *local density* at each point
+- GMMs are good choice: can flexibly model density fields in any number of dimensions and easily generate new points within the model
+- Useful idea when simulating large multidimensional data sets based on small observed samples
 ##### ***GMM with Errors: Extreme Deconvolution***
-
+- **Extreme deconvolution (XD):** Bayesian estimation of multivariate densities modelled as GMMs with data that have measurement errors
+- Each data point $\mathbf{x}$ is sampled from one of $M$ Gaussians with given means and variances, with the weight of each Gaussian being $\alpha_j$, therefore the pdf of $\mathbf{x}$ is: $$ p(\mathbf{x}) = \sum_j \alpha_j \mathcal{N}(\mathbf{x}|\mathbf{\mu}_j, \mathbf{\Sigma}_j) $$
+- XD assumes that the noisy observations $\mathbf{x}_i$ and the true values $\mathbf{v}_i$ are related through $$ \mathbf{x}_i = \mathbf{R}_i \mathbf{v}_i + \boldsymbol{\epsilon}_i $$where $\mathbf{R}_i$ is the projection matrix, and noise $\boldsymbol{\epsilon}_i$ is assumed to be drawn from a Gaussian with zero mean and variance $\mathbf{S}_i$
+- **XD aims:** Given matrices $\mathbf{R}_i$ and $\mathbf{S}_i$, XD aims to find parameters $\boldsymbol{\mu}_i$, $\boldsymbol{\Sigma}_i$ of the underlying Gaussians, and weights $\alpha_i$ in a way that maximises the likelihood of the observed data
+- **Expectation Maximised (EM)** approach (see [[Chapter 4#***The Basics of the Expectation Maximisation Algorithm***|4.4.3]]) results in an iterative procedure that converges to a *local maximum of the likelihood*
 ### 6.4. Finding Clusters in Data
 - 274
 

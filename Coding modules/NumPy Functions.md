@@ -1,7 +1,7 @@
 ### Searching ([[Chapter 2#2.5. Case Studies Speedup Strategies in Practice|As in 2.5]])
-#### $numpy.searchsorted$
+##### $numpy.searchsorted$
 - Array-based searching that scales as $O(N \log N)$
-#### $numpy.histogram$
+##### $numpy.histogram$
 - Basic hashing
 - See also: $numpy.histogram2d$ and $numpy.histogramdd$
 ### Sorting ([[Chapter 2#2.5. Case Studies Speedup Strategies in Practice|As in 2.5]])
@@ -24,3 +24,4 @@
 - A multinomial (generalised binomial) distribution
 ##### $numpy.random.multivariate\_normal$
 - Implements random samples from a multivariate Gaussian
+---

@@ -1,10 +1,15 @@
 ### Multidimensional tree structures ([[Chapter 2#2.5. Case Studies Speedup Strategies in Practice|As in 2.5]])
-#### $sklearn.neighbors.BallTree$
+##### $sklearn.neighbors.BallTree$
 - A fast ball-tree implementation
 ---
 ### Kernel Density Estimation in D dimensions ([[Chapter 6#***KDE with Measurement Errors***|As in 6.1]])
-#### $sklearn.neighbours.KernelDensity$
+##### $sklearn.neighbours.KernelDensity$
 - KDE in $D$ dimensions using different kernels
 ### Gaussian mixture model in D dimensions ([[Chapter 6#***Gaussian Mixture Model***|As in 6.3]])
-#### $sklearn.mixture.GaussianMixure$
+##### $sklearn.mixture.GaussianMixure$
 - A GMM implementation
+### Clustering algorithms ([[Chapter 6#6.4. Finding Clusters in Data|As in 6.4]])
+##### $sklearn.cluster.KMeans$
+- Implementation of $K$-means using expectation maximisation
+##### $sklearn.cluster.MeanShift$
+- Implementation of mean shift algorithm

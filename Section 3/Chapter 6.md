@@ -62,27 +62,71 @@
 - XD assumes that the noisy observations $\mathbf{x}_i$ and the true values $\mathbf{v}_i$ are related through $$ \mathbf{x}_i = \mathbf{R}_i \mathbf{v}_i + \boldsymbol{\epsilon}_i $$where $\mathbf{R}_i$ is the projection matrix, and noise $\boldsymbol{\epsilon}_i$ is assumed to be drawn from a Gaussian with zero mean and variance $\mathbf{S}_i$
 - **XD aims:** Given matrices $\mathbf{R}_i$ and $\mathbf{S}_i$, XD aims to find parameters $\boldsymbol{\mu}_i$, $\boldsymbol{\Sigma}_i$ of the underlying Gaussians, and weights $\alpha_i$ in a way that maximises the likelihood of the observed data
 - **Expectation Maximised (EM)** approach (see [[Chapter 4#***The Basics of the Expectation Maximisation Algorithm***|4.4.3]]) results in an iterative procedure that converges to a *local maximum of the likelihood*
+
 ### 6.4. Finding Clusters in Data
-- 274
-
 ##### ***General Aspects of Clustering and Unsupervised Learning***
-
+- **Clustering:** structure in multivariate point data, concentration of points; *overdensities* when density estimate is available; partitioning data into smaller parts according to some criteria
+- **Unsupervised:** no prior information about number and properties of clusters
+- Objective criteria for clustering is more vague than for prediction tasks
 ##### ***Clustering by Sum-of-Squares Minimisation: K-Means***
-
+- **K-means:** partitioning of points into $K$ disjoint subsets $C_k$ with each subset containint $N_k$ points, so $$ \sum_{k=i}^{k} \sum_{i \in C_k} || x_i - \mu_k ||^2 $$is minimised, where $\mu_k$ is the mean of the points in set $C_k$
+- **Procedure**:
+	- Choose the centroid, $\mu_k$, of each of the $K$ clusters
+	- Assign each point to the cluster it is closest to (according to $C(x_i) = \text{arg min}_k ||x_i - \mu_k ||$)
+	- Update centroids by recomputing $\mu_k$ to include new points
+	- Continue until no new assignments to clusters/no points left
+- Process doesn't guarantee a globally optimal minimum, but it never increases the sum-of-squares error
+- Process is run multiple times with different starting centroid values, and result with lowest sum-of-squares error is used
 ##### ***Clustering by Max-Radius Minimisation: The Gonzales Algorithm***
-
+- **Max-radius minimisation:** minimise the maximum radius of a cluster, $$ \min_k \max_{x_i \in C_k} ||x_i - \mu_k|| $$where $\mu_k$ is the assigned centre of each cluster
+- **Gonzales Algorithm:** algorithm that starts with no clusters and progressively adds one cluster at a time (arbitrarily selects cluster centres from data)
+	- Then find point $x_i$ which maximises the distance from the centres of existing clusters and set that as next cluster centre
+	- Repeat until achieve $K$ clusters
+	- Each point is then assigned to it's nearest cluster centre
 ##### ***Clustering by Nonparametric Density Estimation: Mean Shift***
-
+- Define clusters in terms of modes or peaks of the nonparametric density estimate
+- **Mean shift algorithm:** technique to find local modes in a kernel density estimate
+	- Concept: move data points int he direction of the log of the gradient of the density of the data, until they converge at the peaks
+	- Number of modes $K$ is found implicitly by the method
+	- Convergence of procedure is defined by the bandwidth $h$ of the kernel and the parameterisation of $a$
+	- eg. for the Epanechnikov kernel (see [[Chapter 6#***Kernel Density Estimation***|6.6.1]]) and the value $$ a = \frac{h^2}{D+2} $$the update rule reduces to the form $$ x_{i}^{m+1} = \text{mean position of points } x_i^m \text{ within distance } h \text{ of } x_i^m $$
 ##### ***Clustering Procedurally: Hierarchical Clustering***
+- **Procedural method:** a method not formally related to some function of the underlying density
+- **Hierarchical clustering:** relaxes need to specify $K$ by finding all clusters at all scales
+	- When two points are in the same cluster at level $m$, and remain together at all subsequent levels; visualised with a tree diagram/dendrogram
+- Procedure:
+	- Partition data into $N$ clusters, one per data point
+	- Merge the nearest pair of clusters based on some definition of distance
+	- Repeat until the $N$th partition contains one cluster
+- Can be top-down (**divisive**) or bottom-up (**agglomerative**) procedure
+- **Friends-of-friends** clustering: single-linkage hierarchical clustering; often used in cluster analysis for $N$-body simulations
+- Most distance algorithms are too slow for large data sets, eg. a minimum spanning tree is $\mathcal{O}(N^3)$ to compute
 
 ### 6.5. Correlation Functions
-- 280
-
+- Can characterise how far, and on what scales, a distribution of points differs from a random distribution; can be used for **testing models of structure formation and evolution** directly against data
+- Defined by noting that the probability of finding a point in a volume element, $dV$, is proportional to the density of points, $\rho$
+	- The **probability of finding a pair of points in two volume elements separated by a distance** is: $$ dP_{12} = \rho^2 dV_1 dV_2 (1+\xi(r)) $$where $\xi(x)$ is the **two-point correlation function**
+- $\xi(r)$ describes the **excess probability** of finding a pair of points, as a function of separation, compared to a random distribution
+	- Positive, negative, zero amplitudes in $\xi(r)$ == correlated, anticorrelated, random distributions
+- $\xi(r)$ relates directly to the power spectrum through the Fourier transform, $$ \xi(r) = \frac{1}{2 \pi^2} \int k^2 P(k) \frac{\sin(kr)}{kr} dk $$where the scale/wavelength of a fluctuation ($\lambda$) is related to the wave number $k$ by $k = 2\pi / \lambda$
+	- Therefore, $\xi(r)$ can be used to describe the density fluctuations of sources
+- In galaxy distribution studies, $\xi(r)$ is often **parameterised in terms of a power law**, $$ \xi(r) = \left( \frac{r}{r_0} \right)^{-\gamma} $$where $r_0$ is the clustering scale length and $\gamma$ is the power law exponent
+- The **angular correlation function** of apparent positions of objects on the sky is: $$ w(\theta) = \left( \frac{\theta}{\theta_0} \right)^{\delta} $$where $\delta = 1 - \gamma$
+- Correlation functions can be **extended to higher dimensions**/orders; these can be expressed in terms of the probability of finding a given configuration of points, eg. the three-point correlation function: $$ dP_{123} = \rho^3 dV_1 dV_2 dV_3 (1 + \xi(r_{12}) + \xi(r_{23}) + \xi(r_{13}) + \zeta(r_{12}, r_{23}, r_{13})) $$where $\zeta$ is the **reduced** or **connected three-point correlation function**, and doesn't depend on the lower-order correlation functions
 ##### ***Computing the n-Point Correlation Function***
+- Random distribution is generated with the same selection function as the data
+- Computational cost of estimating the correlation function is dominated by the size of the random data set
+- Estimator of $\xi(r)$: $$ \hat \xi(r) = \frac{DD(r)}{RR(r)} - 1 $$where $DD(r)$ is the number of pairs of data points, and $RR(r)$ is the number of pairs of random points
+	- Other estimators include the **Landy-Szaley estimator**, which can extended to higher-order correlation functions
+- For clustering on small scales, a **ball-tree** based implementation offers significant improvement in computation time for the two-point correlation function over a brute-force method
+	- Naive computation of $n$-point correlation function is $\mathcal{O}(N^n)$; space-partitioning trees can reduce this computation to $\mathcal{O}(N^{\log n})$
 
 ### 6.6. Which Density Estimation and Clustering Algorithms Should I Use?
-- 284
-
+- Four measures of "goodness" of methods: accuracy, interpretability, simplicity, speed
+- In general:
+	- **Highest accuracies** require nonparametric methods
+	- Parametric models are **more interpretable** as the meanings of each part of the model are usually clear
+- **Table 6.1** summarises authors' assessments of all methods in this chapter
 
 
 Next chapter: [[Chapter 7]]

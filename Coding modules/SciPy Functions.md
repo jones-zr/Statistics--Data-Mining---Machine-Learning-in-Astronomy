@@ -34,9 +34,11 @@
 - Gamma distribution
 ##### $scipy.stats.weibull_min$
 - Weibull distribution
-
 ### Correlation tests ([[Chapter 3#3.6. Correlation Coefficients|As in 3.6]])
 ##### $scipy.stats.spearmanr$
 ##### $scipy.stats.kendalltau$
 ##### $scipy.stats.pearsonr$
-
+---
+### Clustering algorithms ([[Chapter 6#***Clustering Procedurally Hierarchical Clustering***|As in 6.4]])
+##### $scipy.sparse.scgraph.minimum\_spanning\_tree$ and $sklearn.neighbors.kneighbors\_graph$ from [[Scikit-learn Functions]]
+- Approximate Euclidean minimum spanning tree using $k$ nearest neighbours of each point

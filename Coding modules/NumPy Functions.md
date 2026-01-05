@@ -25,3 +25,7 @@
 ##### $numpy.random.multivariate\_normal$
 - Implements random samples from a multivariate Gaussian
 ---
+### Singular Value Decomposition ([[Chapter 7#***The Derivation of Principle Component Analysis***|As in 7.3]])
+##### $numpy.linalg.svd$ and $numpy.linalg.eigh$
+- Linear algebra tools for computing SVD and symmetric eigenvalue decomposition
+- $svd$ and $eigh$ functions are also availably in [[SciPy Functions|ScyPi]]

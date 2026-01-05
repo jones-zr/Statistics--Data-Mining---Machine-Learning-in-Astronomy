@@ -13,3 +13,10 @@
 - Implementation of $K$-means using expectation maximisation
 ##### $sklearn.cluster.MeanShift$
 - Implementation of mean shift algorithm
+---
+### Principle Component Analysis ([[Chapter 7#7.3. Principal Component Analysis|As in 7.3]])
+##### $sklearn.decomposition.PCA$
+- Implementation of PCA; for large, higher-dimensional problems, use $RandomizedPCA$
+### Nonnegative Matrix Factorisation ([[Chapter 7#7.4. Nonnegative Matrix Factorisation|As in 7.4]])
+##### $sklearn.decomposition.NMF$
+- Implementation of NMF

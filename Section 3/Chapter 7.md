@@ -30,9 +30,27 @@
 		- For $K \gg N$: eigenvalue decomposition of $N \times N$ correlation matrix $M_X$
 		- For intermediate case: computation of the SVD of $X$
 ##### ***The Application of PCA***
-- 300
+- Before creating matrix $X$ (by subtracting mean of each dimension), data are processed to be maximally informative, eg.:
+	- For heterogeneous data (eg. galaxy flux): columns are often divided by variance, to make variance of each feature is comparable
+	- For spectra or images: rows are normalised so integrated flux of each object is unity, to remove uninteresting correlations based on brightness
+- For galaxy spectra, the principal directions found in high-dimensional data are called **eigenspectra** => a spectrum can be represented by the sum of it's eigenspectra; ordered by eigenvalues that reflect amount of variance in each eigenspectra
+- Sum of eigenvalues equals total variance/"information" of entire data set; most variance/information is held in the first handful of eigenvectors; this is how PCA allows for dimensionality reduction
+	- Truncation of eigencomponents at $r < R$ will exclude components with small eigenvalues, which predominantly reflect noise within data set
+- Eigenvectors with large eigenvalues are predominantly **low-order components** (continuum); **higher-order components** with smaller eigenvalues are predominantly sharp features (emission lines); remaining eigenvectors are noise; combination of these eigenvectors can describe any input spectra
+- **Notable aspects of PCA:**
+	- Statistically orthogonal components correlate strongly with specific physical properties of galaxies (eg. star formation)
+	- Astrophysically interesting components within the spectra (eg. spectral lines or transients) may not be in the largest PCA components; must be careful with truncation
+	- Sums of linear components may not always efficiently reconstruct data features (eg. broad-line quasars need 30 components to reproduce spectra, star-forming galaxies need 10)
+- **Choosing level of truncation in an expansion:**
+	- $r$ often picked on empirical basis
+	- Common criterion for picking $r$: $$ \frac{\sum_{i}^{i=r} \sigma_i}{\sum_{i}^{i=R} \sigma_i} < \alpha $$where $\alpha$ is the specified fraction of variance we wish to capture, and $\sigma_i$ are the eigenvalues/diagonals of the matrix $\Sigma$
+		- Typical values of $\alpha$ range from 0.70 to 0.95, though is sensitive to the shape of the **scree plot** (eigenvalue number vs normalised/cumulative eigenvalues; eg. figure 7.4 in book)
 ##### ***PCA with Missing Data***
+- Truncation of the expansion provides a signal-to-noise filtering of the data; **PCA bases should be able to correct for missing elements** within the data (eg. detector glitches, variable noise, masking effects)
+- Complication: eigenspectra are only defined to be orthogonal over the spectral range on which they are constructed; if data vector does not fully cover that space, then projecting onto the eigenbases results in biased expansion coefficients
 ##### Scaling to Large Data Sets
+- Limitations of PCA: **computational and memory requirements** of the SVD which scale as $\mathcal{O}(D^3)$ and $\mathcal{O}(2 \times D \times D)$ respectively; computational requirements of SVD are set by rank of $X$
+- **Eigenvalue decompositions** (EVD) are often more efficient; even then, memory is challenging
 
 ### 7.4. Nonnegative Matrix Factorisation
 - 306

@@ -69,12 +69,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Coding modules/Scikit-learn Functions.md",
+                "file": "Coding modules/NumPy Functions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Scikit-learn Functions"
+              "title": "NumPy Functions"
             }
           }
         ],
@@ -135,7 +135,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "5bbac40fc4d31725",
@@ -228,12 +228,13 @@
   },
   "active": "71022808b2e077d6",
   "lastOpenFiles": [
-    "Chapter 8.md",
-    "Section 3/Chapter 7.md",
-    "Coding modules/Scikit-learn Functions.md",
     "Coding modules/NumPy Functions.md",
-    "Coding modules/SciPy Functions.md",
+    "Coding modules/Scikit-learn Functions.md",
+    "Section 3/Chapter 7.md",
     "Section 3/Chapter 6.md",
+    "Untitled.base",
+    "Chapter 8.md",
+    "Coding modules/SciPy Functions.md",
     "Section 2/Chapter 4.md",
     "Coding modules/AstroML Functions.md",
     "Section 2/Chapter 5.md",
@@ -242,7 +243,6 @@
     "Section 2/Chapter 3.md",
     "Section 1/Chapter 2.md",
     "Section 1/Chapter 1.md",
-    "Untitled.base",
     "Untitled 1.canvas",
     "Untitled.canvas",
     "Coding modules",

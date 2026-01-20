@@ -53,7 +53,10 @@
 - **Eigenvalue decompositions** (EVD) are often more efficient; even then, memory is challenging
 
 ### 7.4. Nonnegative Matrix Factorisation
-- 306
+- In PCA, principal components can be positive or negative
+- Nonnegative matrix factorisation (NMF) assumes any data matrix can be factored into two matrices, $W$ and $Y$, such that: $$ X = WY $$where both $W$ and $Y$ are **nonnegative**
+- Nonnegative bases can be derived using a simple update rule; this does not guarantee nonlocal minima
+- Components derived by NMF are broadly consistent with PCA but with different ordering of the basis functions
 
 ### 7.5. Manifold Learning
 - 308

@@ -59,10 +59,29 @@
 - Components derived by NMF are broadly consistent with PCA but with different ordering of the basis functions
 
 ### 7.5. Manifold Learning
-- 308
+- Real data often contains nonlinear features which are hard to capture with a linear basis like PCA or NMF (eg. emission lines)
+- **S-curve** data set test case (figure 7.8 in book): data is drawn from a 2D manifold and embedded in a 3D space
+	- PCA cannot capture the intrinsic information; no linear projection in which distant parts of the manifold do not overlap
+	- Manifold learning techniques can unwrap/unfold the surface so underlying structure becomes clear
+	- More powerful with eg. galaxy or quasar spectra, up to 4000 dimensions
 ##### ***Locally Linear Embedding***
+- **LLE:** unsupervised learning algorithm; embeds high-dimensional data in a lower-dimensional space while preserving geometry of local neighbourhoods of points (relation of points with $k$ nearest neighbours)
+- Steps:
+	1. For each point, derive a set of weights which best reconstruct the point from its $k$ nearest neighbours; find weight matrix $W$ that encodes the global geometric properties of the data set, or how each point relates to all others
+	2. New lower-dimensional data set, $Y$, is found which maintains the neighbourhood relationships of the original $X$ data set
+- Point 1 requires a nearest-neighbour search, then a least-squares solution to the corresponding row of $W$
+- Point 2 requires an eigenvalue decomposition of the matrix $C_W \equiv (I - W)^T (I - W)$
 ##### ***IsoMap***
+- **Isometric mapping:** multidimensional scaling (MDS) framework; reconstructs data set from a matrix of pairwise distances
+- For data set with $N \times K$ matrix $X$, can compute an $N \times N$ distance matrix $D_X$ such that $[D_X]_{ij}$ contains the distance between points $i$ and $j$
+- Given $D_X$, MDS finds $Y$ which minimises the error: $$ \mathcal{E}_{XY} = | \tau (D_X) - \tau (D_Y)|^2 $$where $\tau$ is an operator: $$ \tau(D) = \frac{HSH}{2} $$where $S$ is the matrix of square distances $S_{ij} = D_{ij}^{2}$, and $H$ is the centring matrix $H_{ij} = \delta_{ij} - 1/N$
+- Recovers nonlinear structure by approximating geodesic curves which lie within the embedded manifold, and computes the distances between each point in the dataset along these geodesic curves
 ##### ***Weakness of Manifold Learning***
+- **Noise or gaps in data:** rely on relations between points; missing points/strong noise disrupt relations
+- **Tuning parameters:** currently no solid recommendation for choosing the optimal set of $k$ neighbours for a given embedding
+- **Dimensionality:** no guarantee that the embedded manifold is unidimensional
+- **Sensitivity to outliers:** outliers between different regions of the manifold can act to "short-circuit" the manifold; algorithm cannot find correct embedding
+- **Reconstruction from the manifold:** any mapping from the embedded space to the higher-dimensional input space must be through a reconstruction based on the location of the nearest-neighbours; projection from manifold learning therefore cannot compress data like PCA can
 
 ### 7.6. Independent Component Analysis and Projection Pursuit
 - 315

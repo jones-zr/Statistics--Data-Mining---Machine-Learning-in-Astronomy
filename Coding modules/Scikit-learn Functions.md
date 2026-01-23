@@ -20,3 +20,9 @@
 ### Nonnegative Matrix Factorisation ([[Chapter 7#7.4. Nonnegative Matrix Factorisation|As in 7.4]])
 ##### $sklearn.decomposition.NMF$
 - Implementation of NMF
+---
+### Manifold Learning ([[Chapter 7#7.5. Manifold Learning|As in 7.5]])
+##### $sklearn.manifold.LocallyLinearEmbedding$
+- Implementation of LLE with fast tree for neighbour searching, and ARPACK for fast global optimisation
+##### $sklearn.manifold.Isomap$
+- Implementation of the IsoMap algorithm with fast tree for neighbour searching, and ARPACK for final eigenanalysis

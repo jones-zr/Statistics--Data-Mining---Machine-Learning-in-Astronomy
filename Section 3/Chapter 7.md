@@ -84,8 +84,14 @@
 - **Reconstruction from the manifold:** any mapping from the embedded space to the higher-dimensional input space must be through a reconstruction based on the location of the nearest-neighbours; projection from manifold learning therefore cannot compress data like PCA can
 
 ### 7.6. Independent Component Analysis and Projection Pursuit
-- 315
+- **ICA:** uses statistical independence to isolate individual signals (ala the *cocktail party problem*); eg. each galaxy spectrum is a "microphone" picking up a linear combination of input signals from individual stars and HII regions
+	- Example can be written in matrix form as: $$ X = AS $$where $X$ and $S$ are matrices for input spectra and stellar spectra, and $A$ is a set of appropriate mixing amplitudes
+	- Main principle: the input signals should be **statistically independent**
+- **Projection pursuit:** subset of ICA
 ##### ***The Application of ICA to Astronomical Data***
+- Important: prepossessing of input data; mean vector is removed to centre the data, then eigenvalue decomposition of covariance matrix
+- FastICA can evaluate each independent component simultaneously
+- Size of the mixing matrix increases computational complexity, makes it impractical to calculate the weight matrix directly; reduction in complexity of input signals through PCA is often applied to ICA problems
 
 ### 7.7. Which Dimensionality Reduction Technique Should I Use?
 - 317

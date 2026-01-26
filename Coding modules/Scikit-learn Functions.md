@@ -26,3 +26,7 @@
 - Implementation of LLE with fast tree for neighbour searching, and ARPACK for fast global optimisation
 ##### $sklearn.manifold.Isomap$
 - Implementation of the IsoMap algorithm with fast tree for neighbour searching, and ARPACK for final eigenanalysis
+---
+### ICA ([[Chapter 7#7.6. Independent Component Analysis and Projection Pursuit|As in 7.6]])
+##### $sklearn.decomposition.FastICA$
+- Implementation of ICA based on the FastICA algorithm

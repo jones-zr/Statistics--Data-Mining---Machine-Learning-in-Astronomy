@@ -94,8 +94,27 @@
 - Size of the mixing matrix increases computational complexity, makes it impractical to calculate the weight matrix directly; reduction in complexity of input signals through PCA is often applied to ICA problems
 
 ### 7.7. Which Dimensionality Reduction Technique Should I Use?
-- 317
-- 320
+- **Accuracy:**
+	- PCA gives best square reconstruction error for any given $K$
+	- LLE minimises square reconstruction error, but in a nonlinear fashion
+	- NMF minimises a notion of reconstruction error, under nonnegativity constraints
+	- IsoMap minimises the difference between each pairwise distance in the original space and its counterpart in the reconstructed space
+	- NMF-type approaches have a performance advantage over PCA, ICA, and manifold learning for low S/N data
+- **Interpretability:**
+	- NMF yields more sensible components than PCA; constraints ensure that reconstructions are valid spectra or images
+	- PCA advantage is ability to estimate the importance of each principal component
+- **Scalability:**
+	- Linear methods for dimensionality reductions are usually tractable even for high $N$
+	- Nonlinear methods like LLE and IsoMap, first step is most expensive (nearest-neighbour computation)
+- **Simplicity:**
+	- PCA is "convex" (usable out of the box)
+	- ICA and NMF are nonconvex
+	- LLE and IsoMap are convex but require careful evaluation of $k$
+	- PCA, NMF, ICA can be applied to out-of-sample data; LLE, IsoMap require that the test data be added to existing training set and the whole model retrained
+- **Extra:**
+	- PCA as a maximum-likelihood-based model is sensitive to outliers; PCA is simplest and most useful technique
+	- No clear way to handle missing values with manifold methods
+	- NMF maps to many astronomical problems
 
 
 Next chapter: [[Chapter 8]]

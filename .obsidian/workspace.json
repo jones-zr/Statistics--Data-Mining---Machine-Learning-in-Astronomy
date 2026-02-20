@@ -8,45 +8,45 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e1e7eb0ef5d2c2ba",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Section 2/Chapter 4.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Chapter 4"
-            }
-          },
-          {
-            "id": "832e77e47484f3d5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Section 3/Chapter 6.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Chapter 6"
-            }
-          },
-          {
             "id": "71022808b2e077d6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Section 3/Chapter 7.md",
+                "file": "Section 2/Chapter 5.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 7"
+              "title": "Chapter 5"
+            }
+          },
+          {
+            "id": "a812d5cca78ec808",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Section 3/Chapter 8.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter 8"
+            }
+          },
+          {
+            "id": "dcc94d1a213b7dd6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Section 3/Chapter 9.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter 9"
             }
           },
           {
@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Chapter 8.md",
+                "file": "Terminology/Photometry vs Spectromotry.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 8"
+              "title": "Photometry vs Spectromotry"
             }
           },
           {
@@ -78,7 +78,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -226,32 +226,36 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "71022808b2e077d6",
+  "active": "a812d5cca78ec808",
   "lastOpenFiles": [
-    "Coding modules/Scikit-learn Functions.md",
+    "Section 3/Chapter 9.md",
+    "Section 3/Chapter 8.md",
+    "Section 2/Chapter 5.md",
+    "Section 2/Chapter 4.md",
     "Section 3/Chapter 7.md",
-    "Chapter 8.md",
-    "Coding modules/NumPy Functions.md",
+    "Terminology/Photometry vs Spectromotry.md",
+    "Front Page.md",
+    "Section 1/Chapter 1.md",
+    "Section 4",
+    "Coding modules/AstroML Functions.md",
+    "Terminology/Parametric or Nonparametric.md",
+    "Terminology/Manifolds.md",
+    "Terminology/Self-similar.md",
     "Section 3/Chapter 6.md",
+    "Section 2/Chapter 3.md",
+    "Coding modules/Scikit-learn Functions.md",
+    "Coding modules/NumPy Functions.md",
     "Untitled.base",
     "Coding modules/SciPy Functions.md",
-    "Section 2/Chapter 4.md",
-    "Coding modules/AstroML Functions.md",
-    "Section 2/Chapter 5.md",
     "Coding modules/Astropy Functions.md",
     "Coding modules/PyMC3 Functions.md",
-    "Section 2/Chapter 3.md",
     "Section 1/Chapter 2.md",
-    "Section 1/Chapter 1.md",
     "Untitled 1.canvas",
     "Untitled.canvas",
     "Coding modules",
-    "Terminology/Manifolds.md",
-    "Terminology/Parametric or Nonparametric.md",
     "2025-05-12.md",
     "Section 3",
     "Section 2",
-    "Terminology/Self-similar.md",
     "Terminology/Machine learning.md",
     "Terminology/Data mining.md",
     "Non/parametric Model.md",

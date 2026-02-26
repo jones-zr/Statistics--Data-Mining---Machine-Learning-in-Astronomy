@@ -11,3 +11,9 @@
 ### Correlation Functions ([[Chapter 6#6.5. Correlation Functions|As in 6.5]])
 ##### $astroML.correlation.two\_point\_angular$
 - Implementation of a two-point correlation function estimator based on the ball-tree
+---
+### Regression ([[Chapter 8#8.2. Regression|As in 8.2]])
+##### $astroML.linear\_model.PolynomialRegression$
+- Polynomial regression with homo- and heteroscedastic errors
+##### $astroML.linear\_model.BasisFunctionRegression$
+- Basis function regression

@@ -30,3 +30,8 @@
 ### ICA ([[Chapter 7#7.6. Independent Component Analysis and Projection Pursuit|As in 7.6]])
 ##### $sklearn.decomposition.FastICA$
 - Implementation of ICA based on the FastICA algorithm
+---
+### Linear Regression ([[Chapter 8#8.2. Regression|As in 8.2]])
+##### $sklearn.linear_model.LinearRegression$
+- Multivariate linear regression with homoscedastic errors on dependent variables
+- *AstroML* has a similar implementation for data with heteroscedastic errors

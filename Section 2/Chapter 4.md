@@ -61,7 +61,7 @@
 	- There is no simple closed-form expression for $\mu^0$ in this case
 ##### ***Beyond the Likelihood: Other Cost Functions and Robustness***
 - Cost functions quantify some "cost" associated with parameter estimation; expectation value of the cost function is called **risk**
-- One risk, the **mean integrated square error** (MISE) is defined as: $$ \text{MISE} = \int_{-\infty}^{\infty} [f(x) - h(x)]^2 dx $$
+- One risk, the **mean integrated square error** (MISE), is defined as: $$ \text{MISE} = \int_{-\infty}^{\infty} [f(x) - h(x)]^2 dx $$
 	- Shows how close the empirical estimate $f(x)$ is to the true pdf $h(x)$
 	- Based on the cost function given by the mean square error ($L_2$ norm); a cost function that minimises absolute deviation is called the $L_1$ norm
 		- Eg. a MLE applied to a Gaussian likelihood gives a $L_2$ cost function; applied to a Laplace distribution gives a $L_1$ cost function

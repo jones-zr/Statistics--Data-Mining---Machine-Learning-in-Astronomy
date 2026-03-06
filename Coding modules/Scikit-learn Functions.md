@@ -32,6 +32,11 @@
 - Implementation of ICA based on the FastICA algorithm
 ---
 ### Linear Regression ([[Chapter 8#8.2. Regression|As in 8.2]])
-##### $sklearn.linear_model.LinearRegression$
+##### $sklearn.linear\_model.LinearRegression$
 - Multivariate linear regression with homoscedastic errors on dependent variables
 - *AstroML* has a similar implementation for data with heteroscedastic errors
+### Regularisation ([[Chapter 8#8.3. Regularisation and Penalising the Likelihood|As in 8.3]])
+##### $sklearn.linear\_model.Ridge$
+- Ridge regression
+##### $sklearn.linear\_model.Lasso$
+- Lasso regression

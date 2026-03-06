@@ -42,10 +42,25 @@
 	- Problem stays linear despite arbitrary basis functions; only fitting the coefficients of the terms
 
 ### 8.3. Regularisation and Penalising the Likelihood
-- 332
+- **Regularisation (shrinkage):** limiting the complexity of the underlying regression model by applying a penalty to the likelihood function; trades increase in bias for a reduction in variance
+- Eg. including a penalty/regularisation term on a minimisation: $$ (Y - M \boldsymbol{\theta})^T C^{-1} (Y - M \boldsymbol{\theta}) - \lambda |\boldsymbol{\theta}^T \boldsymbol{\theta}|^2 $$where $\lambda$ is the regularisation/*smoothing parameter*, and $|\boldsymbol{\theta}^T \boldsymbol{\theta}|^2$ is an example *penalty function*
+	- This example penalises the size of the regression coefficients (**ridge regression**)
+	- Solving for the parameters gives: $$ \boldsymbol{\theta} = (M^T C^{-1} M + \lambda I)^{-1} (M^T C^{-1} Y) $$
 ##### ***Ridge Regression***
+- $L_2$ regularisation; penalty on the sum of the squares of the regression coefficients so that: $$ |\boldsymbol{\theta}|^2 < s $$where $s$ controls complexity of model similar to regularisation parameter $\lambda$
+	- Suppressing large coefficients limits *variance* of the system but increases the bias of derived coefficients
+	- Smaller $s$ values (higher $\lambda$ values) drive the regression coefficients towards zero
+- Through SVD, *regularised regression coefficients* can be written as: $$ \boldsymbol{\theta} = V \Sigma' U^T Y $$where $\Sigma'$ is a diagonal matrix with elements $d_i / (d_i^2 + \lambda)$, with $d_i$ the eigenvalues of $MM^T$
+	- As $\lambda$ increases, only the diagonal components with highest eigenvalues will contribute to the regression
+- Goodness of fit for a ridge regression: $$ \hat{y} = M(M^TM + \lambda I)^{-1} M^T y $$and degrees of freedom: $$ \text{DOF} = \text{Trace}[M(M^TM + \lambda I)^{-1} M^T] = \sum_i \frac{d_i^2}{d_i^2 + \lambda} $$
 ##### ***LASSO Regression***
+- $L_1$ regularisation; LASSO = "least absolute shrinkage and selection"; uses the $L_1$ norm to subset the variables within a model and apply shrinkage
+	- Eg. LASSO penalises likelihood as: $$ (Y - M \boldsymbol{\theta})^T (Y - M \boldsymbol{\theta}) - \lambda |\boldsymbol{\theta}| $$where $|\boldsymbol{\theta}|$ penalises the absolute value of $\boldsymbol{\theta}$
+- Equivalent to least-squares regression with penalty: $$ |\boldsymbol{\theta}| < s $$
+- LASSO weights the regression coefficients and imposes *sparsity* on the regression model; as $\lambda$ increases, the size of the region encompassed with the constraint decreases
+- Unlike ridge regression, LASSO has no *closed-form solution*
 ##### ***How Do We Choose the Regularisation Parameter $\lambda$***
+- Estimating $\lambda$ involves minimising the cross-validation error; error defined by applying $k$-fold cross-validation techniques: $$ \text{Error}(\lambda) = k^{-1} \sum_k N_{k}^{-1} \sum_k^{N_k} \frac{[y_i - f(x_i | \boldsymbol{\theta})]^2}{\sigma_i^2} $$
 
 ### 8.4. Principal Component Regression
 - 337

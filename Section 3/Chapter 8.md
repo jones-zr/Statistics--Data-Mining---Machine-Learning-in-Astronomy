@@ -63,23 +63,43 @@
 - Estimating $\lambda$ involves minimising the cross-validation error; error defined by applying $k$-fold cross-validation techniques: $$ \text{Error}(\lambda) = k^{-1} \sum_k N_{k}^{-1} \sum_k^{N_k} \frac{[y_i - f(x_i | \boldsymbol{\theta})]^2}{\sigma_i^2} $$
 
 ### 8.4. Principal Component Regression
-- 337
+- For high-dimensional data or data sets with collinear variables; can define the *principal components* from the data covariance matrix $X^T X$ through EVD or SVD: $$ X^T X = V \Sigma V^T $$with $V^T$ the eigenvectors and $\Sigma$ the eigenvalues; projecting data matrix onto eigenvectors gives projected data points: $$ Z = X V^T $$and truncate to *exclude* components with small eigenvalues; *linear regression* can then be applied to transposed data: $$ Y = M_z \boldsymbol{\theta} + \epsilon $$with $M_z$ the design matrix for *projected components* $z_i$
+	- Principal component analysis (PCA) plus truncation, and regression are two separate steps
+- **PCR vs ridge regression**: number of model components in PCR is ordered by eigenvalues and is absolute, regression coefficients are weighted by 1 or 0; ridge regression weights coefficients continuously
+	- PCR advantage: better for data with independent variables that are *collinear*
+	- PCR disadvantage: truncation point it not set; eigenvalues do not always correlate with ability of principal components to predict dependent variables
+- Most linear regressions implicitly do some kind of PCR to invert the matrix $M^T M$
 
 ### 8.5. Kernel Regression
-- 338
+- Defines a kernel, $K(x_i, x)$, *local to each data point*, with amplitude depending on the distance from the point to all other points in sample; *kernel is positive for all values* and approaches 0 asymptotically as distance approaches infinity; kernel influence is determined by width/*bandwidth* $h$
+- *Nadaraya-Watson* estimation of the regression function is: $$ f(x|K) = \frac{\sum_{i=1}^{N} K \left( \frac{||x_i - x||}{h} \right) y_i}{\sum_{i=1}^{N} K \left( \frac{||x_i - x||}{h} \right)} $$which is taking the weighted average of the dependent variable $y$; gives higher weight $w_i(x)$ to points near $x$
+- *Rule of thumb:* bandwidth is more important than exact shape of the kernel in kernel-based regression; estimation of the *optimal bandwidth* is done through cross-validation, and decreases with sample size as $N^{-1/5}$
 
 ### 8.6. Locally Linear Regression
-- 339
+- Solves a separate weighted least-squares problem at each point $x$, finding the $w(x)$ which minimises: $$ \sum_{i=1}^{N} K \left( \frac{||x - x_i||}{h} \right) (y_i - w(x) x_i)^2 $$
+- Assume that regression function is approximated by a *Taylor series expansion* about any local point; truncating expansion at the first term (locally constant solution) gives *kernel regression*
+- Function estimate of LLR is: $$ f(x|K) = \sum_{i=1}^{N} w_i(x) y_i $$
+- A common form for $K(x)$ is the *tricubic kernel*: $$ K(x_i, x) = \left( 1 - \left( \frac{|x - x_i|}{h} \right)^3 \right)^3 $$
+- **Local polynomial regression**: any polynomial order; going past linear increases variance without decreasing much bias, most boundary bias is captured in LLR
+- **Variable-bandwidth kernels**: let the bandwidth for each point be inversely proportional to its $k$th nearest neighbour's distance
 
 ### 8.7. Nonlinear Regression
-- 340
+- Nonlinear optimisation problems require maximising the *posterior*, eg. thought MCMC
+- Alternatively, use the *Levenberg-Marquardt (LM) algorithm* to optimise the maximum likelihood estimation; LM minimises the sum-of-squares error of a multivariate distribution: $$ \sum_i (y_i - f(x_i | \boldsymbol{\theta}_0) - J_i d\boldsymbol{\theta})^2 $$for the perturbation $d\boldsymbol{\theta}$, where $J$ is the Jacobian about the point
+	- LM is iterative; at each iteration, searches for the step $d\boldsymbol{\theta}$ that minimises the sum-of-squares error, then updates regression model
+	- Dampening parameters, $\lambda$, is adaptively varied each iteration, decreasing as the minimum is approached
+	- At convergence, the regression parameter covariances are given by $[J^T \boldsymbol{\theta} J]^{-1}$
+- Success of the LM algorithm often relies on the initial guess for the regression parameters being close to the maximum likelihood solution
 
 ### 8.8. Uncertainties in the Data
-- 342
 ##### ***Uncertainties in the Dependent and Independent Axes***
+- Both dependent and independent variables have measurement uncertainties
+- Eg. for a linear model, the objective function is: $$ y_i^* = \theta_0 + \theta_1 x_i^*$$
+	- Assuming $x$ and $y$ are noisy observations of $x^*$ and $y^*$: $$ x_i = x_i^* + \delta_i, \text{ and } y_i = y^* + \epsilon_i $$where $\delta$ and $\epsilon$ are centered normal distribution; solving for $y$ gives: $$ y = \theta_0 + \theta_1(x_i - \delta_i) + \epsilon_i $$
+	- The uncertainty in $x$ is now *part of the regression equation* and scales with the regression coefficients; known as *total least squares* problem
 
 ### 8.9. Regression That Is Robust to Outliers
-- 343
+- Any regression or model fitting must be able to account for outliers from the fit
 ##### ***Bayesian Outlier Methods***
 
 ### 8.10. Gaussian Process Regression

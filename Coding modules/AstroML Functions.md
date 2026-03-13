@@ -17,3 +17,6 @@
 - Polynomial regression with homo- and heteroscedastic errors
 ##### $astroML.linear\_model.BasisFunctionRegression$
 - Basis function regression
+##### $astroML.linear\_model.NadarayaWatson$
+- Nadaraya-Watson or kernel regression
+

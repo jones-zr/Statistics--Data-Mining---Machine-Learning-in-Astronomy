@@ -42,3 +42,7 @@
 ### Clustering algorithms ([[Chapter 6#***Clustering Procedurally Hierarchical Clustering***|As in 6.4]])
 ##### $scipy.sparse.scgraph.minimum\_spanning\_tree$ and $sklearn.neighbors.kneighbors\_graph$ from [[Scikit-learn Functions]]
 - Approximate Euclidean minimum spanning tree using $k$ nearest neighbours of each point
+---
+### Regression ([[Chapter 8#8.7. Nonlinear Regression|As in 8.7]])
+##### $scipy.optimize.leastsq$
+- The nonlinear regression LM algorithm in the optimise submodule

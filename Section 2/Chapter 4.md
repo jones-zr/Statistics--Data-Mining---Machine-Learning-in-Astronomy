@@ -10,7 +10,7 @@
 	- Statistical procedures should have **well-defined, long-run** frequency properties
 - **Bayesian** tenants:
 	- Probability describes the **degree of subjective belief**; probability statements can be made about data, model parameters and models etc.
-	- Probability distributions quantify the uncertainty of our knowledge about parameters
+	- Probability distributions quantify the **uncertainty of our knowledge** about parameters
 - Both are concerned with uncertainties about estimates; main difference is which parts of the situation have a certain probability value
 - Classical and Bayesian results are often the same; Bayesian approach has more computational difficulties
 

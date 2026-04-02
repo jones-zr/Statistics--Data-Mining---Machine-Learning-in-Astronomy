@@ -67,7 +67,7 @@
 
 ### 5.4. Bayesian Model Selection
 - **Odds ratio:** comparing the posterior probabilities of two models $M_1$ and $M_2$ to find out which is better supported by data; favours $M_2$ over $M_1$ with: $$ O_{21} \equiv \frac{p(M_2 | D,I)}{p(M_1 | D,I)} $$
-	- These two posteriors $M_{1,2}$ can be be obtained from the posterior pdf $p(M, \boldsymbol{\theta} | D, I)$ using **marginalisation** over the model parameter space $\boldsymbol{\theta}$
+	- These two posteriors $M_{1,2}$ can also be obtained from the posterior pdf $p(M, \boldsymbol{\theta} | D, I)$ using **marginalisation** over the model parameter space $\boldsymbol{\theta}$
 	- Posterior probability the model $M$ given data $D$ is: $$ p(M | D,I) = \frac{p(D | M,I) p(M|I)}{p(D|I)} $$ where $$ E(M) \equiv p(D | M,I) = \int p(D | M, \boldsymbol{\theta}, I) p(\boldsymbol{\theta} | M,I) d\boldsymbol{\theta} $$ is the **marginal likelihood** or **evidence** for model $M$
 	- $E(M)$ is also called **global likelihood** for model $M$; is a **weighted average** of the likelihood function
 	- To compute $p(D|I)$: $$ O_{21} = \frac{E(M_2)}{E(M_1)} \frac{p(M_2 | I)}{p(M_1 | I)} = B_{21} \frac{p(M_2 | I)}{p(M_1 | I)} $$ where $B_{21}$ (the **Bayes factor**) is the ratio of global likelihoods and is: $$ B_{21} = \frac{\int p(D | M_2, \boldsymbol{\theta}_2, I) p(\boldsymbol{\theta}_2 | M_2, I) d\boldsymbol{\theta}_2}{\int p(D | M_1, \boldsymbol{\theta}_1, I) p(\boldsymbol{\theta}_1 | M_1, I) d\boldsymbol{\theta}_1} $$
@@ -80,7 +80,7 @@
 	- Classical version is based on data likelihood, and the null hypothesis can be rejected if it doesn't provide a good description of the data
 ##### ***Occam's Razor***
 - The principle of selecting the simplest model that is in fair agreement with the data
-- Odds ration has the ability to penalise complex models with many free parameters; Occam's Razor is naturally included in Bayesian model comparison
+- Odds ratio has the ability to penalise complex models with many free parameters; Occam's Razor is naturally included in Bayesian model comparison
 ##### ***Information Criteria***
 - **Bayesian information criterion (BIC)** is closely related to the odds ratio and similar to the AIC
 - The BIC for model $M$ is: $$ BIC \equiv -2 \ln [L^0 (M)] + k \ln N $$ where $k$ is the number of model parameters, $N$ is the amount of data points, and $L^0 (M)$ is the maximum value of the data likelihood
@@ -142,7 +142,7 @@
 ##### ***Gaussian or Lorentzian Likelihood?***
 - Obtain model evidence by integrating the product of the data likelihood and the prior pdf for the model parameters, eg. $$ E(M = \text{Cauchy}) = \int p(\{x_i\} | \mu, \gamma, I) p(\mu, \gamma | I) d\mu d\gamma $$ and $$ E(M = \text{Gaussian}) = \int p(\{x_i\} | \mu, \sigma, I) p(\mu, \sigma | I) d\mu d\sigma $$
 - If no other information is available, can assume the ratio of model priors $p(M_C |I) / p(M_G |I) = 1$, and thus the odds ratio is the same as the Bayes factor, $$ O_{CG} = \frac{E(M = \text{Cauchy})}{E(M = \text{Gaussian})} $$
-- If the odds ratio is very close to 1, the comparison is inconclusive; the ability to discriminate between models in creases with number of data values
+- If the odds ratio is very close to 1, the comparison is inconclusive; the ability to discriminate between models increases with number of data values
 - Additionally, the presence of even a single outlier can have a large effect on the computed likelihood and conclusions
 ##### ***Understanding Knuth's Histograms***
 - The best piecewise constant model has the number of bins $M$ which maximises: $$ F(M | \{x_i\}, I) = N \log M + \log \left[ \Gamma \left(\frac{M}{2}\right) \right] - M \log \left[ \Gamma \left(\frac{1}{2}\right) \right] - \log \left[ \Gamma \left(N + \frac{M}{2}\right) \right] + \sum_{k=1}^{M} \log \left[ \Gamma \left(n_k + \frac{1}{2}\right) \right] $$ where $n_k$ is the number of measurements $x_i$ which are found in bin $k$
@@ -160,7 +160,7 @@
 ### 5.8. Numerical Methods for Complex Problems (MCMC)
 - Generic Monte Carlo methods are very inefficient, especially with high-dimensional integrals
 - **Markov Chain Monte Carlo** methods return a sample of points, or chain, from the $k$-dimensional parameter space with a distribution that is asymptotically proportional to $p(\theta)$
-	- With a Markov chain, quantitative description of the posterior pdf becomes and density estimation problem
+	- With a Markov chain, quantitative description of the posterior pdf becomes a density estimation problem
 ##### ***Markov Chain Monte Carlo***
 - **Markov chain**: a sequence of random variables where a given value nontrivially depends only on its preceding value; "memoryless" chain
 - **Markov process**: process of generating a Markov chain as: $$ p(\theta_{i+1} | \{\theta_i\}) = p(\theta_{i+1} | \theta_i) $$
@@ -190,15 +190,15 @@
 
 ### 5.9. Hierarchical Bayesian Modelling
 - Also called **multilevel models**, **Bayesian belief networks**, or **graphical models**
-- Prior distributions depend on unknown variables (**hyperparameters**)that describe the group/population level probabilistic model
-- For a vector of parameters $\boldsymbol{\theta}$ has two elements $\alpha, \beta$, with likelihood function $p(D|\alpha, \beta)$ and prior probability $p(\alpha, \beta)$:
+- Prior distributions depend on unknown parameters (**hyperparameters**) that describe the group/population level probabilistic model
+- For a vector of parameters $\boldsymbol{\theta}$ that has two elements $\alpha, \beta$, with likelihood function $p(D|\alpha, \beta)$ and prior probability $p(\alpha, \beta)$:
 	- If their product can be factored as a **chain of dependencies** among model parameters, $$ p(D|\alpha, \beta) p(\alpha, \beta) = p(D|\alpha) p(\alpha, \beta) p(\beta) $$then the **model is hierarchical**
 - Approach is useful for quantifying uncertainty in the prior pdf, and for using overall population properties when estimating parameters of a single population member; can effectively handle multiple sources of uncertainty at all stages of data analysis
 - **Hyperpriors**: priors shared among all sample elements, eg. systematic velocity and velocity dispersion shared among all stars of the same cluster
 - In Astronomy, HB modelling often applied to a **set of sets of measurements that have things in common**, eg. measurements of individual supernova luminosities all drawn from a population of type Ia supernovas; SEDs of stars that are all behind the same dust layer with unknown extinction properties
 
 ### 5.10. Approximate Bayesian Computation
-- Astronomical models are often intrinsically stochastic; can be difficult to explicitly write the data likelihood out; **ABC** makes tuning method less as hoc and more efficient
+- Astronomical models are often intrinsically stochastic; can be difficult to explicitly write the data likelihood out; **ABC** makes tuning method less ad hoc and more efficient
 - ABC idea: produce a large number of models (simulations) by sampling the plausible (prior) values of input parameters and select those that resemble the data; distribution of input parameters for subset then approximates the true posterior pdf
 - ABC method typically relies on a **low-dimensionality** summary statistic, eg. sample mean $S(x)$; when $S(x)$ is a sufficient statistic, ABC converges to the true posterior
 - In every iteration $j$, the set of parameter values is improved through incremental approximations to the true posterior pdf; each subsequent value $\theta_i$ has an **importance weight**: $$ w_i = \propto \frac{p_o(\theta)}{p_j(\theta)} $$

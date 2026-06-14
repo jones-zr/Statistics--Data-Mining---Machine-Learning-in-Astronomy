@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Section 2/Chapter 3.md",
+                "file": "Section 3/Chapter 6.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 3"
+              "title": "Chapter 6"
             }
           },
           {
@@ -69,16 +69,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Coding modules/Scikit-learn Functions.md",
+                "file": "Coding modules/NumPy Functions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Scikit-learn Functions"
+              "title": "NumPy Functions"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -226,31 +226,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "dcc94d1a213b7dd6",
+  "active": "71022808b2e077d6",
   "lastOpenFiles": [
+    "Coding modules/NumPy Functions.md",
+    "Coding modules/SciPy Functions.md",
     "Section 3/Chapter 7.md",
-    "Section 3/Chapter 8.md",
-    "Section 2/Chapter 4.md",
-    "Section 3/Chapter 9.md",
+    "Coding modules/Chapter_7_code.ipynb",
+    "Coding modules/Chapter _7_code.ipynb",
+    "Code",
+    "Chapter _7_code.ipynb",
     "Coding modules/Scikit-learn Functions.md",
-    "Section 2/Chapter 5.md",
+    "Coding modules/PyMC3 Functions.md",
+    "Coding modules/Astropy Functions.md",
+    "Coding modules/AstroML Functions.md",
     "Section 3/Chapter 6.md",
     "Section 2/Chapter 3.md",
+    "Section 3/Chapter 9.md",
+    "Section 3/Chapter 8.md",
+    "Section 2/Chapter 4.md",
+    "Section 2/Chapter 5.md",
     "Front Page.md",
     "Untitled.canvas",
     "Section 1/Chapter 2.md",
     "Terminology/Photometry vs Spectromotry.md",
-    "Coding modules/SciPy Functions.md",
-    "Coding modules/AstroML Functions.md",
     "Untitled.base",
     "Section 1/Chapter 1.md",
     "Section 4",
     "Terminology/Parametric or Nonparametric.md",
     "Terminology/Manifolds.md",
     "Terminology/Self-similar.md",
-    "Coding modules/NumPy Functions.md",
-    "Coding modules/Astropy Functions.md",
-    "Coding modules/PyMC3 Functions.md",
     "Untitled 1.canvas",
     "Coding modules",
     "2025-05-12.md",
@@ -260,8 +264,6 @@
     "Terminology/Data mining.md",
     "Non/parametric Model.md",
     "Non",
-    "Terminology",
-    "Section 1",
     "create a link.md"
   ]
 }

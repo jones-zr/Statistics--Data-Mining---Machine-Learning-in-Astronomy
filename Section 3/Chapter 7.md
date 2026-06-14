@@ -29,6 +29,7 @@
 		- For $N \gg K$: eigenvalue decomposition of $K \times K$ covariance matrix $C_X$
 		- For $K \gg N$: eigenvalue decomposition of $N \times N$ correlation matrix $M_X$
 		- For intermediate case: computation of the SVD of $X$
+- **Coding:** [[NumPy Functions#Singular Value Decomposition ( Chapter 7 ***The Derivation of Principle Component Analysis*** As in 7.3 )|SVD]] 
 ##### ***The Application of PCA***
 - Before creating matrix $X$ (by subtracting mean of each dimension), data are processed to be maximally informative, eg.:
 	- For heterogeneous data (eg. galaxy flux): columns are often divided by variance, to make variance of each feature is comparable
@@ -45,6 +46,7 @@
 	- $r$ often picked on empirical basis
 	- Common criterion for picking $r$: $$ \frac{\sum_{i}^{i=r} \sigma_i}{\sum_{i}^{i=R} \sigma_i} < \alpha $$where $\alpha$ is the specified fraction of variance we wish to capture, and $\sigma_i$ are the eigenvalues/diagonals of the matrix $\Sigma$
 		- Typical values of $\alpha$ range from 0.70 to 0.95, though is sensitive to the shape of the **scree plot** (eigenvalue number vs normalised/cumulative eigenvalues; eg. figure 7.4 in book)
+- **Code:** [[Scikit-learn Functions#Principle Component Analysis ( Chapter 7 7.3. Principal Component Analysis As in 7.3 )|PCA]] 
 ##### ***PCA with Missing Data***
 - Truncation of the expansion provides a signal-to-noise filtering of the data; **PCA bases should be able to correct for missing elements** within the data (eg. detector glitches, variable noise, masking effects)
 - Complication: eigenspectra are only defined to be orthogonal over the spectral range on which they are constructed; if data vector does not fully cover that space, then projecting onto the eigenbases results in biased expansion coefficients
@@ -57,6 +59,7 @@
 - Nonnegative matrix factorisation (NMF) assumes any data matrix can be factored into two matrices, $W$ and $Y$, such that: $$ X = WY $$where both $W$ and $Y$ are **nonnegative**
 - Nonnegative bases can be derived using a simple update rule; this does not guarantee nonlocal minima
 - Components derived by NMF are broadly consistent with PCA but with different ordering of the basis functions
+- **Code:** [[Scikit-learn Functions#Nonnegative Matrix Factorisation ( Chapter 7 7.4. Nonnegative Matrix Factorisation As in 7.4 )|NMF]] 
 
 ### 7.5. Manifold Learning
 - Real data often contains nonlinear features which are hard to capture with a linear basis like PCA or NMF (eg. emission lines)
@@ -64,6 +67,7 @@
 	- PCA cannot capture the intrinsic information; no linear projection in which distant parts of the manifold do not overlap
 	- Manifold learning techniques can unwrap/unfold the surface so underlying structure becomes clear
 	- More powerful with eg. galaxy or quasar spectra, up to 4000 dimensions
+- **Code:** [[Scikit-learn Functions#Manifold Learning ( Chapter 7 7.5. Manifold Learning As in 7.5 )|LLE and IsoMap]] 
 ##### ***Locally Linear Embedding***
 - **LLE:** unsupervised learning algorithm; embeds high-dimensional data in a lower-dimensional space while preserving geometry of local neighbourhoods of points (relation of points with $k$ nearest neighbours)
 - Steps:
@@ -88,6 +92,7 @@
 	- Example can be written in matrix form as: $$ X = AS $$where $X$ and $S$ are matrices for input spectra and stellar spectra, and $A$ is a set of appropriate mixing amplitudes
 	- Main principle: the input signals should be **statistically independent**
 - **Projection pursuit:** subset of ICA
+- **Code:** [[Scikit-learn Functions#ICA ( Chapter 7 7.6. Independent Component Analysis and Projection Pursuit As in 7.6 )|ICA]] 
 ##### ***The Application of ICA to Astronomical Data***
 - Important: prepossessing of input data; mean vector is removed to centre the data, then eigenvalue decomposition of covariance matrix
 - FastICA can evaluate each independent component simultaneously

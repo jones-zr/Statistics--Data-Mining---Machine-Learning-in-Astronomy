@@ -1,6 +1,6 @@
 *Dimensionality and Its Reduction*
 ### 7.1. The Curse of Dimensionality
-- The more selection conditions (ie. dimensions) you adopt, the tinier the chance of finding the ideal choice; curse of dimensionality impacts the size of the data required to constrain the model, the complexity of the model itself, and the search time required to optimise the model
+- The more selection conditions (ie. dimensions) you adopt, the tinier the chance of finding the ideal choice of model; curse of dimensionality impacts the size of the data required to constrain the model, the complexity of the model itself, and the search time required to optimise the model
 	- eg. the fraction of points within a search radius $r$ (relative to the full space) will tend to zero as the dimensionality grows => the number of points in a data set required to evenly sample this hypervolume will grow exponentially with dimension
 
 ### 7.2. The Data Sets Used in This Chapter

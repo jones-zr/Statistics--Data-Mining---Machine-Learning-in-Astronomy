@@ -40,3 +40,6 @@
 - Ridge regression
 ##### $sklearn.linear\_model.Lasso$
 - Lasso regression
+### Gaussian Process Regression ([[Chapter 8#8.10. Gaussian Process Regression|As in 8.10]])
+##### $sklearn.gaussian\_process$
+- General framework for Gaussian process regression

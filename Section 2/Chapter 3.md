@@ -106,7 +106,7 @@
 - Descriptive Statistics:
 	- Distribution is symmetric
 	- Parameters: $\mu$
-	- Mean: $\overline{x} = \mu $
+	- Mean: $\overline{x} = \mu$
 	- Median: $q_{50} = \mu - 1/3$
 	- Mode: $x_m = \mu - 1$
 	- Std: $\sigma = \sqrt{\mu}$

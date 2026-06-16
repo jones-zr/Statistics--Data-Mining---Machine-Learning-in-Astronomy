@@ -126,7 +126,20 @@
 - In general:
 	- **Highest accuracies** require nonparametric methods
 	- Parametric models are **more interpretable** as the meanings of each part of the model are usually clear
-- **Table 6.1** summarises authors' assessments of all methods in this chapter
+
+### Table 6.1
+
+| Method                        | Accuracy | Interpretability | Simplicity | Speed |
+| ----------------------------- | -------- | ---------------- | ---------- | ----- |
+| **$K$-nearest-neighbour**     | **H**    | **H**            | **H**      | **M** |
+| **Kernel density estimation** | **H**    | **H**            | **H**      | **H** |
+| Gaussian mixture models       | H        | M                | M          | M     |
+| Extreme deconvolution         | H        | H                | M          | M     |
+| $K$-means                     | L        | M                | H          | M     |
+| Max-radius minimisation       | L        | M                | M          | M     |
+| Mean shift                    | M        | H                | H          | M     |
+| Hierarchical clustering       | H        | L                | L          | L     |
+| Correlation functions         | H        | M                | M          | M     |
 
 
 Next chapter: [[Chapter 7]]

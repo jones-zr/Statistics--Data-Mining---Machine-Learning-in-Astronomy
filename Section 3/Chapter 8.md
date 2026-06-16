@@ -185,6 +185,19 @@
 	- Kernel regressions can be sped up with fast tree-based algorithms
 	- Gaussian process regression can also be sped up but is *very computationally expensive*
 
+### Table 8.1
+
+| Method                             | Accuracy | Interpretability | Simplicity | Speed |
+| ---------------------------------- | -------- | ---------------- | ---------- | ----- |
+| Linear regression                  | L        | H                | H          | H     |
+| Linear basis function regression   | M        | M                | M          | M     |
+| Ridge regression                   | L        | H                | M          | H     |
+| LASSO regression                   | L        | H                | M          | L     |
+| PCA regression                     | M        | M                | M          | M     |
+| Nadaraya-Watson regression         | M/H      | M                | H          | L/M   |
+| Local linear/polynomial regression | H        | M                | M          | L/M   |
+| Nonlinear regression               | M        | H                | L          | L/M   |
+
 
 Next chapter: [[Chapter 9]]
 New terminology:

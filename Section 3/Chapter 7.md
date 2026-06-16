@@ -121,6 +121,15 @@
 	- No clear way to handle missing values with manifold methods
 	- NMF maps to many astronomical problems
 
+### Table 7.1
+
+| Method                           | Accuracy | Interpretability | Simplicity | Speed |
+| -------------------------------- | -------- | ---------------- | ---------- | ----- |
+| **Principal component analysis** | **H**    | **H**            | **H**      | **H** |
+| Locally linear embedding         | H        | M                | H          | M     |
+| Nonnegative matrix factorisation | H        | H                | M          | M     |
+| Independent component analysis   | M        | M                | L          | L     |
+
 
 Next chapter: [[Chapter 8]]
 New terminology:

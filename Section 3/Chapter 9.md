@@ -57,14 +57,29 @@
 	- Downside: high computation cost of evaluating kernel density estimates
 
 ### 9.4. $K$-Nearest-Neighbour Classifier
-- 366
+- *Using the class label of the nearest point*; an "approximate" kernel discriminant analysis with a variable bandwidth
+- Simplest classifier assumes nothing about the form of the conditional density distribution (ie. is completely *nonparametric*); resulting decision boundary is a *Voronoi tessellation* of the attribute space
+- Number of neighbours $K$ is used as a smoothing parameter; increasing $K$ increases *variance* but increases *bias*
+- Weights can be assigned to each point's "vote" by weighing by the distance to the nearest point; classifier is directly related to *kernel regression*
+- Euclidean distance used for distance metric
+- Works best with large data samples; computational time to search for neighbours can be expensive
 
 ### 9.5. Discriminative Classification
-- 367
+- Directly modelling the decision boundary between two or more classes of source, as above
 ##### ***Logistic Regression***
+- Can be in the form of two (binomial) or more (multinomial) classes; name from the *logistic function*, $e^x / (1+e^x)$
+- When $y$ is binary, it can be modelled as a *Bernoulli distribution* with conditional likelihood function of: $$ L(\beta) = \prod_{i=1}^N p_i(\beta)^{y_i} (1 - p_i(\beta))^{1-y_i} $$
+- The *model* is by assumption: $$ \log \left( \frac{p(y=1|x)}{p(y=0|x)} \right) = \beta_0 + \beta^T x $$
+	- Parameters are chosen to effectively minimise classification error rather than density estimation error
 
 ### 9.6. Support Vector Machine
-- 370
+- Assuming the classes are *linearly separable* as $y=\{-1,1\}$; consider a hyperplane that maximises distance of the closest point from either class; this distance is the *margin*, points on the margin are *support vectors*
+- Hyperplane maximising the margin is: $$ \max_{\beta_0, \beta}(m) \text{ subject to } \frac{1}{||\beta||} y_i (\beta_0 + \beta^T x_i) \geq m \text{ $\forall$ $i$} $$
+- Optimising this problem is equivalent to minimising: $$ \frac{1}{2} ||\beta|| \text{ subject to } y_i(\beta_0 + \beta^T x_i) \geq 1 \text{ $\forall$ $i$} $$
+	- A *quadratic programming* problem with many known solutions
+- The discriminant function for the hyperplane can be written as: $$ g(x) = \beta_0 + \sum_{i=1}^N \alpha_i y_i \left< x, x_i \right> $$where $\alpha$ is a vector of weights with $\alpha_i>0$ and $\sum_i \alpha_i y_i = 0$
+- Major limitation: limited to *linear decision boundaries*; becomes nonlinear through *kernalisation*
+	- Replacing each occurrence of $\left< x_i, x_{i'} \right>$ with a kernel function $K(x_i, x_{i'})$
 
 ### 9.7. Decision Trees
 - 373

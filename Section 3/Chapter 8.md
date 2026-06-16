@@ -1,5 +1,5 @@
 *Regression and Model Fitting*
-- Special case of general model fitting and procedure selection; the relation between a dependent variable $y$ and a set of independent variables $x$ that describes the **expectation value** of $y$ given $x$: $E[y|x]$
+- Special case of general model fitting and procedure selection; the relation between a dependent variable $y$ and a set of independent variables $x$ that describes the **expectation value** of $y$ given $x$: $\mathbb{E}[y|x]$
 - The term *regression* is used as in "how a trend *regresses* toward a population mean"
 - Regression techniques tend to make simplifying assumptions about data, uncertainties and models
 ### 8.1. Formulation of the Regression Problem

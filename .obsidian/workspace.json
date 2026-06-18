@@ -50,7 +50,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -198,11 +198,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "745878bcd8af7274",
+  "active": "dcc94d1a213b7dd6",
   "lastOpenFiles": [
+    "Section 3/Chapter 7.md",
     "Section 3/Chapter 8.md",
     "Section 3/Chapter 9.md",
-    "Section 3/Chapter 7.md",
     "Section 2/Chapter 3.md",
     "Section 2/Chapter 5.md",
     "Section 3/Chapter 6.md",

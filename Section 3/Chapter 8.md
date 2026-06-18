@@ -5,12 +5,12 @@
 ### 8.1. Formulation of the Regression Problem
 - Instead of finding an underlying pdf of a distribution, regression infers the **conditional expectation value**: $$y = f(x|\boldsymbol{\theta})$$where $y$ is a *scalar dependent variable*, $x$ is an *independent vector*, and $\boldsymbol{\theta}$ are parameters of the distribution
 	- Here $x$ does not need to be a random variable, and for a given model of function $f$, there are $k$ model parameters $\theta_{p}$
-- Observations $x_i$ and $y_i$ constrain model parameters $\boldsymbol{\theta}$; each point provides a joint constraint
+- Observations $x_i$ and $y_i$ constrain model parameters $\boldsymbol{\theta}$; each point provides a joint constraint (*Figure ??*)
 	- Observations with no uncertainties provide constraints as lines; increasing number of points increases the constraints, and their intersection gives the best estimate of model parameters
 	- Observations with uncertainties give constraints as a distribution rather than a line; best estimate of model parameters is then given by a posterior distribution
 - General regression is computationally expensive
 - **Classification axes** for regression problems:
-	- *Linearity:* When a parametric model is linear in all model parameters, eg. $$ f(x|\theta) = \sum_{p=1}^{k} \theta_p g_p (x)$$regression becomes much simpler *linear regression*
+	- *Linearity:* When a parametric model is linear in all model parameters, eg. $$ f(x|\theta) = \sum_{p=1}^{k} \theta_p g_p (x)$$regression becomes much simpler **linear regression**
 	- *Problem complexity:* A large number of independent variables increases the complexity of the error covariance matrix
 	- *Error behaviour:* Uncertainties of independent and dependent variables are the primary factor that determines choice of regression method
 		- When **error behaviour for $y$ is known and errors for $x$ are negligible**: use Bayesian methodology to write *posterior pdf* for model parameters as $$ p(\boldsymbol{\theta}| \{x_i, y_i\}, I) \propto p(\{x_i, y_i\} | \boldsymbol{\theta}, I) p(\boldsymbol{\theta}, I) $$where $I$ is the error behaviour; the *data likelihood* is given as: $$ p(y_i | x_i, \boldsymbol{\theta}, I) = e(y_i | y) $$where $y=f(x|\boldsymbol{\theta})$ is the model class, and $e(y_i | y)$ is the probability of observing $y_i$ given the true value/model prediction $y$
@@ -20,10 +20,11 @@
 ### 8.2. Regression
 - Linear model is the simplest case of regression: $$ y_i = \theta_0 + \theta_1 x_i + \epsilon_i $$where $\theta_0$ and $\theta_1$ are the coefficients that describe the regression function we are estimating (ie. slope and intercept of a line in this case), and $\epsilon_i$ is the additive noise term; uncertainties of independent variables $x_i$ are considered negligible, and dependent variables $y_i$ have known heteroscedastic uncertainties $\epsilon_i = \mathcal{N}(0,\sigma_i)$
 - Therefore, *data likelihood* is written as: $$ p(\{y_i\} | \{x_i\}, \boldsymbol{\theta}, I) = \prod_{i=1}^{N} \frac{1}{\sqrt{2 \pi} \sigma_i} \exp \left( \frac{-(y_i - (\theta_0 + \theta_1 x_i))^{2}}{2 \sigma_{i}^{2}} \right)$$
-- With no knowledge of the distribution of parameters (a *flat* or *uninformative* prior pdf, $p(\theta | I)$, the posterior will be directly proportional to the likelihood function (aka. the error function); the *logarithm of the posterior* gives the "classic definition" of regression in terms of the *log-likelihood*: $$ \ln (L) \equiv \ln ( p(\boldsymbol{\theta}| \{x_i, y_i\}, I)) \propto \sum_{i=1}^{N} \left( \frac{-(y_i - (\theta_0 + \theta_1 x_i))^{2}}{2 \sigma_{i}^{2}} \right) $$
+- With no knowledge of the distribution of parameters (a *flat* or *uninformative* prior pdf, $p(\theta | I)$), the posterior will be directly proportional to the likelihood function (aka. the error function); the *logarithm of the posterior* gives the "classic definition" of regression in terms of the *log-likelihood*: $$ \ln (L) \equiv \ln ( p(\boldsymbol{\theta}| \{x_i, y_i\}, I)) \propto \sum_{i=1}^{N} \left( \frac{-(y_i - (\theta_0 + \theta_1 x_i))^{2}}{2 \sigma_{i}^{2}} \right) $$
 - Maximising the log-likelihood as a function of model parameters is achieved by minimising the *sum of square errors*; comes from the assumption of Gaussian uncertainties for $y_i$
 - Minimising $\ln(L)$ simplifies to: $$ \theta_1 = \frac{\sum_{i}^{N} x_i y_i - \overline{x} \overline{y}}{\sum_{i}^{N} (x_i - \overline{x})^2} \text{, and } \theta_0 = \overline{y} - \theta_1 \overline{x} $$where $\overline{x}$ and $\overline{y}$ are the mean values of $x$ and $y$
-- For heteroscedastic errors, and for complex regression functions, its easier to use *matrix notation* to generalise regression problems, therefore define: $$ Y = M \boldsymbol{\theta} $$where $Y$ is an $N$-dimensional vector of values $y_i$, $$ Y = \begin{bmatrix} y_0 \cr y_1 \cr y_2 \cr . \cr y_{N-1} \end{bmatrix} $$the example straight-line regression function $\boldsymbol{\theta}$ is a 2D vector of regression coefficients, $$ \boldsymbol{\theta} = \begin{bmatrix} \theta_0 \cr \theta_1 \end{bmatrix} $$and design matrix $M$ is a $2 \times N$ matrix $$ M = \begin{bmatrix} 1 & x_0 \cr 1 & x_1 \cr 1 & x_2 \cr . & . \cr 1 & x_{N-1} \end{bmatrix} $$where the constant values capture the $\theta_0$ term in the regression
+- For heteroscedastic errors, and for complex regression functions, its easier to use *matrix notation* to generalise regression problems, therefore define: $$ Y = M \boldsymbol{\theta} $$where $Y$ is an $N$-dimensional vector of values $y_i$, $$ Y = \begin{bmatrix} y_0 \cr y_1 \cr y_2 \cr . \cr y_{N-1} \end{bmatrix} $$
+- For the example of straight-line regression, function $\boldsymbol{\theta}$ is a 2D vector of regression coefficients, $$ \boldsymbol{\theta} = \begin{bmatrix} \theta_0 \cr \theta_1 \end{bmatrix} $$and design matrix $M$ is a $2 \times N$ matrix $$ M = \begin{bmatrix} 1 & x_0 \cr 1 & x_1 \cr 1 & x_2 \cr . & . \cr 1 & x_{N-1} \end{bmatrix} $$where the constant values capture the $\theta_0$ term in the regression
 - For the heteroscedastic uncertainties, can define a *covariance matrix* $C$ as an $N \times N$ matrix: $$ C = \begin{bmatrix} \sigma_{0}^{2} & 0 & . & 0 \cr 0 & \sigma_{1}^{2} & . & 0 \cr . & . & . & . \cr 0 & 0 & . & \sigma_{N-1}^{2} \end{bmatrix} $$with the uncertainties $\sigma_i$ as the diagonals
 - The *maximum likelihood solution* for this regression is $$ \boldsymbol{\theta} = (M^T C^{-1} M)^{-1} (M^T C^{-1} Y) $$which again minimises the sum of the square errors as above
 - The uncertainties on the regression coefficients can be expressed as the symmetric matrix $$ \Sigma_\theta = \begin{bmatrix} \sigma_{\theta_0}^{2} & \sigma_{\theta_0 \theta_1} \cr \sigma_{\theta_0 \theta_1} & \sigma_{\theta_1}^{2} \end{bmatrix} = [M^T C^{-1} M]^{-1}$$
@@ -50,14 +51,15 @@
 - $L_2$ regularisation; penalty on the sum of the squares of the regression coefficients so that: $$ |\boldsymbol{\theta}|^2 < s $$where $s$ controls complexity of model similar to regularisation parameter $\lambda$
 	- Suppressing large coefficients limits *variance* of the system but increases the bias of derived coefficients
 	- Smaller $s$ values (higher $\lambda$ values) drive the regression coefficients towards zero
-- Through SVD, *regularised regression coefficients* can be written as: $$ \boldsymbol{\theta} = V \Sigma' U^T Y $$where $\Sigma'$ is a diagonal matrix with elements $d_i / (d_i^2 + \lambda)$, with $d_i$ the eigenvalues of $MM^T$
+- Through single value decomposition (SVD), *regularised regression coefficients* can be written as: $$ \boldsymbol{\theta} = V \Sigma' U^T Y $$where $\Sigma'$ is a diagonal matrix with elements $d_i / (d_i^2 + \lambda)$, with $d_i$ the eigenvalues of $MM^T$
 	- As $\lambda$ increases, only the diagonal components with highest eigenvalues will contribute to the regression
 - Goodness of fit for a ridge regression: $$ \hat{y} = M(M^TM + \lambda I)^{-1} M^T y $$and degrees of freedom: $$ \text{DOF} = \text{Trace}[M(M^TM + \lambda I)^{-1} M^T] = \sum_i \frac{d_i^2}{d_i^2 + \lambda} $$
+	- The *trace* of a square matrix is the sum of its diagonal elements
 ##### ***LASSO Regression***
 - $L_1$ regularisation; LASSO = "least absolute shrinkage and selection"; uses the $L_1$ norm to subset the variables within a model and apply shrinkage
 	- Eg. LASSO penalises likelihood as: $$ (Y - M \boldsymbol{\theta})^T (Y - M \boldsymbol{\theta}) - \lambda |\boldsymbol{\theta}| $$where $|\boldsymbol{\theta}|$ penalises the absolute value of $\boldsymbol{\theta}$
 - Equivalent to least-squares regression with penalty: $$ |\boldsymbol{\theta}| < s $$
-- LASSO weights the regression coefficients and imposes *sparsity* on the regression model; as $\lambda$ increases, the size of the region encompassed with the constraint decreases
+- LASSO weights the regression coefficients and imposes *sparsity* on the regression model; as $\lambda$ increases, the size of the region encompassed within the constraint decreases
 - Unlike ridge regression, LASSO has no *closed-form solution*
 ##### ***How Do We Choose the Regularisation Parameter $\lambda$***
 - Estimating $\lambda$ involves minimising the cross-validation error; error defined by applying $k$-fold cross-validation techniques: $$ \text{Error}(\lambda) = k^{-1} \sum_k N_{k}^{-1} \sum_k^{N_k} \frac{[y_i - f(x_i | \boldsymbol{\theta})]^2}{\sigma_i^2} $$
@@ -80,11 +82,11 @@
 - Assume that regression function is approximated by a *Taylor series expansion* about any local point; truncating expansion at the first term (locally constant solution) gives *kernel regression*
 - Function estimate of LLR is: $$ f(x|K) = \sum_{i=1}^{N} w_i(x) y_i $$
 - A common form for $K(x)$ is the *tricubic kernel*: $$ K(x_i, x) = \left( 1 - \left( \frac{|x - x_i|}{h} \right)^3 \right)^3 $$
-- **Local polynomial regression**: any polynomial order; going past linear increases variance without decreasing much bias, most boundary bias is captured in LLR
+- **Locally polynomial regression**: any polynomial order; going past linear increases variance without decreasing much bias, most boundary bias is captured in LLR
 - **Variable-bandwidth kernels**: let the bandwidth for each point be inversely proportional to its $k$th nearest neighbour's distance
 
 ### 8.7. Nonlinear Regression
-- Nonlinear optimisation problems require maximising the *posterior*, eg. thought MCMC
+- Nonlinear optimisation problems require maximising the *posterior*, eg. through Markov Chain Monte Carlo (MCMC)
 - Alternatively, use the *Levenberg-Marquardt (LM) algorithm* to optimise the maximum likelihood estimation; LM minimises the sum-of-squares error of a multivariate distribution: $$ \sum_i (y_i - f(x_i | \boldsymbol{\theta}_0) - J_i d\boldsymbol{\theta})^2 $$for the perturbation $d\boldsymbol{\theta}$, where $J$ is the Jacobian about the point
 	- LM is iterative; at each iteration, searches for the step $d\boldsymbol{\theta}$ that minimises the sum-of-squares error, then updates regression model
 	- Dampening parameters, $\lambda$, is adaptively varied each iteration, decreasing as the minimum is approached
@@ -95,12 +97,12 @@
 ##### ***Uncertainties in the Dependent and Independent Axes***
 - Both dependent and independent variables have measurement uncertainties
 - Eg. for a linear model, the objective function is: $$ y_i^* = \theta_0 + \theta_1 x_i^*$$
-	- Assuming $x$ and $y$ are noisy observations of $x^*$ and $y^*$: $$ x_i = x_i^* + \delta_i, \text{ and } y_i = y^* + \epsilon_i $$where $\delta$ and $\epsilon$ are centered normal distribution; solving for $y$ gives: $$ y = \theta_0 + \theta_1(x_i - \delta_i) + \epsilon_i $$
+	- Assuming $x$ and $y$ are noisy observations of $x^*$ and $y^*$: $$ x_i = x_i^* + \delta_i, \text{ and } y_i = y^* + \epsilon_i $$where $\delta$ and $\epsilon$ are centred normal distribution; solving for $y$ gives: $$ y_i = \theta_0 + \theta_1(x_i - \delta_i) + \epsilon_i $$
 	- The uncertainty in $x$ is now *part of the regression equation* and scales with the regression coefficients; known as *total least squares* problem
 
 ### 8.9. Regression That Is Robust to Outliers
 - Any regression or model fitting must be able to account for outliers from the fit
-	- Standard *least-squares* regression that use an $L_2$ norm result in significant outliers, contributing as the square of systematic deviation
+	- Standard *least-squares* regression that use an $L_2$ norm results in significant outliers, contributing as the square of systematic deviation
 	- Known error distributions $e(y_i | y)$ can be included in the likelihood; unknown error distributions can be assumed or modelled as mixture models
 	- An example of assuming an error distribution: adopting the $L_1$ norm, $\Sigma_i ||y_i - w_i x_i||$, which is *less sensitive* to outliers than the $L_2$ norm
 		- Minimising the $L_1$ norm is essentially finding the *median*
